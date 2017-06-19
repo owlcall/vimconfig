@@ -67,30 +67,41 @@ endif " has autocmd
 set splitbelow		" Use bottom split for a new horizontal split buffer
 set splitright		" Use right split for a new vertical split buffer
 
-
 "=========================== General settings
-set exrc		" Load working directory .vimrc file
+set exrc			" Load working directory .vimrc file
 set secure
-set antialias	" Enable antialiasing on Mac OS X
-set mouse=a		" Activate mouse
+set antialias		" Enable antialiasing on Mac OS X
+set mouse=a			" Activate mouse
+set encoding=utf-8	" Default utf-8 encoding
+set belloff=all		" Disable bell sound
+set history=1024	" Increase command history
+set backupdir=/tmp	" Location of the backup directory
+set dir=/tmp		" Location of the swap file
 
+" Wildcard search ignore settings
+set wildignore+=.git
+set wildignore+=*~,*.swp,*.swo,*.tmp
+"set ruler
 
 "=========================== Enable folding
 set foldmethod=indent
 set foldlevel=99
-
 
 "=========================== Editor formatting
 set tabstop=4		" width of the TAB character
 set softtabstop=4
 set shiftwidth=4	" dept of single indentation level
 
-
 "=========================== Editor display
-set number
+syntax on			" Enable syntax highlighting across the board
 "set relativenumber
-syntax on	" Enable syntax highlighting across the board
-
+set number
+set hlsearch		" Highlight search results
+set cursorline		" Highlight cursor line
+set laststatus=2	" Show statusbar all the time
+set scrolloff=1		" Scroll offset of 1 line
+set showmatch		" Show matching bracket
+set timeoutlen=1000 ttimeoutlen=0
 
 "=========================== Theme settings
 set background=dark
@@ -175,7 +186,7 @@ set tags=./tags,tags;$HOME					" Seach in current directory, current file's dire
 set statusline+=%{gutentags#statusline()}	" Display notice when gutentags is generating tags
 
 
-"=========================== Keyboard Bindings
+"=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -188,6 +199,8 @@ nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 
 "=== Editor bindings
+nnoremap <S-Tab> <<
+nnoremap <Tab> >>
 nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 
@@ -196,3 +209,6 @@ nnoremap <Leader>c :Dispatch cd build && rm -rf * && cmake ..<CR>
 nnoremap <Leader>b :Dispatch make -C build<CR>
 nnoremap <Leader>r :Dispatch ./bin/alpha<CR>
 
+"=========================== Keyboard Bindings - Insert Mode
+"=== Editor bindings
+inoremap <S-Tab> <C-d>
