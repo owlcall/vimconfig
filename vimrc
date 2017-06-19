@@ -185,7 +185,7 @@ nnoremap <C-H> <C-W><C-H>
 "=== Panel toggles
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
-nnoremap <C-n>	   :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 
 "=== Editor bindings
 nnoremap <space> za|					" Enable folding with the spacebar
