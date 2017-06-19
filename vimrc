@@ -174,8 +174,8 @@ let g:airline_symbols.linenr = ''
 "=========================== NERDtree plugin customization
 let NERDTreeShowHidden=1
 
-"=== NERDtree open by default
-autocmd VimEnter * NERDTree
+"=== NERDtree open by default, highlight current file,  and focus on buffer
+autocmd VimEnter * NERDTree | wincmd p | NERDTreeFind | wincmd p 
 
 "=== Quit vim if NERDtree is the last panel standing
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -214,7 +214,7 @@ nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 
 "=== Developer/build bindings
 nnoremap <Leader>c :Dispatch cd build && rm -rf * && cmake ..<CR>
-nnoremap <Leader>b :Dispatch make -C build<CR>
+nnoremap <Leader>b :Dispatch pwd && make -C build<CR>
 nnoremap <Leader>r :Dispatch ./bin/alpha<CR>
 
 "=========================== Keyboard Bindings - Insert Mode
