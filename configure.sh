@@ -37,5 +37,6 @@ fi
 
 # Install vim plugins
 vim +PluginInstall +qall
-# Clean vim plugins that aren't in use
 
+# Install airline theme (green normal, red insert, purple replace, blue visual)
+cp altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim

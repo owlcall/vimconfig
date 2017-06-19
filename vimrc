@@ -56,7 +56,7 @@ if has ('autocmd') " Remain compatible with earlier versions
 
 	augroup RestoreCursor	" Restore cursor position when opening files"
 		autocmd!
-		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zm
+		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zz
 	augroup END
 
 	" Enable file type detection.
@@ -134,6 +134,8 @@ endif
 
 
 "=========================== Airline plugin customization
+let g:airline_theme = "bubblegum"
+
 "=== Enable the tabline extension which shows all buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
