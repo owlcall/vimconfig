@@ -103,6 +103,7 @@ syntax on			" Enable syntax highlighting across the board
 set number
 set hlsearch		" Highlight search results
 set cursorline		" Highlight cursor line
+"set cursorcolumn	" Highlight cursor column
 set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
@@ -198,10 +199,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"=== Panel toggles
+"=== Display toggles
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 "=== Editor bindings
 nnoremap <S-Tab> <<
