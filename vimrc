@@ -49,9 +49,14 @@ filetype plugin indent on    " required
 "=========================== Vim behavior settings
 "=== Autoreload .vimrc on save, add file-type-based indentation
 if has ('autocmd') " Remain compatible with earlier versions
-	augroup vimrc     " Source vim configuration upon save
+	augroup vimrc			" Source vim configuration upon save
 		autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
 		autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+	augroup END
+
+	augroup RestoreCursor	" Restore cursor position when opening files"
+		autocmd!
+		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zm
 	augroup END
 
 	" Enable file type detection.
