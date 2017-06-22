@@ -76,12 +76,17 @@ set splitright		" Use right split for a new vertical split buffer
 set exrc			" Load working directory .vimrc file
 set secure
 set antialias		" Enable antialiasing on Mac OS X
-set mouse=a			" Activate mouse
+"set mouse=a			" Activate mouse
 set encoding=utf-8	" Default utf-8 encoding
-set belloff=all		" Disable bell sound
 set history=1024	" Increase command history
 set backupdir=/tmp	" Location of the backup directory
 set dir=/tmp		" Location of the swap file
+
+" Disabling arrow keys (forming habbits!)
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Wildcard search ignore settings
 set wildignore+=.git
@@ -108,6 +113,9 @@ set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
 set list lcs=tab:\|\ 	" Display indentation guides
+
+" Show autocomplete options as visible menu when pressing tab on command line
+set wildchar=<Tab> wildmenu wildmode=full
 
 "=========================== Theme settings
 set background=dark
@@ -139,7 +147,7 @@ let g:airline_theme = "bubblegum"
 "=== Enable the tabline extension which shows all buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '>'
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "=== Custom fonts for airline status bar
@@ -177,10 +185,7 @@ let g:airline_symbols.linenr = ''
 let NERDTreeShowHidden=1
 
 "=== NERDtree open by default, highlight current file,  and focus on buffer
-autocmd VimEnter * NERDTree | wincmd p | NERDTreeFind | wincmd p 
-
-"=== Quit vim if NERDtree is the last panel standing
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
 
 
 "=========================== YouCompleteMe plugin customization
@@ -204,13 +209,14 @@ nnoremap <C-H> <C-W><C-H>
 "=== Display toggles
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
+nnoremap <Leader>q :bd<CR>
 nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 "=== Editor bindings
-nnoremap <S-Tab> <<
-nnoremap <Tab> >>
+"nnoremap <S-Tab> <<
+"nnoremap <Tab> >>
 nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 
@@ -222,3 +228,6 @@ nnoremap <Leader>r :Dispatch ./bin/alpha<CR>
 "=========================== Keyboard Bindings - Insert Mode
 "=== Editor bindings
 inoremap <S-Tab> <C-d>
+
+
+nnoremap <Leader><Tab> : bn<CR>
