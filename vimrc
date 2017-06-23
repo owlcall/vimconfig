@@ -27,6 +27,7 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'scrooloose/nerdtree'
 Plugin 'benmills/vimux'
 Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-smooth-scroll'
 
 "=========== General/Miscellaneous plugins
 Plugin 'tpope/vim-dispatch'
@@ -188,6 +189,35 @@ let NERDTreeShowHidden=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
 
 
+"function! NumBuffers()
+	"return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+"endfunction
+
+"function! IsInNERDTree()
+	"return exists("b:NERDTree") && b:NERDTree.isTabTree()
+"endfunction
+
+"function! ToggleTree()
+	"if(!exists('t:NERDTreeBufName'))
+		""echo "No nerd tree"
+		"return
+	"endif
+
+	"" Check if NERDTree is currently open
+	"if(bufwinnr(t:NERDTreeBufName) == 1)
+	   "return
+	"endif
+
+	"if(bufwinnr(t:NERDTreeBufName) == -1)
+		":NERDTree
+		":wincmd p
+		":NERDTreeFind
+		":wincmd p
+	"endif
+"endfunction
+
+""autocmd BufEnter * if(!IsInNERDTree() && winnr() == 1) | call ToggleTree() | elseif(IsInNERDTree() && winnr() == 1) | bd | endif
+
 "=========================== YouCompleteMe plugin customization
 "=== Autocomplete config file (for c-family languages)
 "let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' 
@@ -198,6 +228,12 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | wincmd p |
 set tags=./tags,tags;$HOME					" Seach in current directory, current file's directory, or up dir until $HOME
 set statusline+=%{gutentags#statusline()}	" Display notice when gutentags is generating tags
 
+"=========================== Scroll Controls
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 30, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 15, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 15, 4)<CR>
 
 "=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
