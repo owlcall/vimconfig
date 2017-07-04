@@ -38,5 +38,10 @@ fi
 # Install vim plugins
 vim +PluginInstall +qall
 
+# Ensure ctags exists
+if ! hash ctags 2>/dev/null; then
+	echo "> ctags is not installed; remember to install ctags"
+fi
+
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 cp altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
