@@ -18,6 +18,23 @@ else
 	ln -sf $ROOT/vimrc ~/.vimrc
 fi
 
+
+if [ ! -f ~/.tmux.conf ]; then
+    echo "> .tmux.conf file not found"
+	echo "> writing custom .tmux.conf as a symlink"
+	ln -sf $ROOT/tmux.conf ~/.tmux.conf 
+else
+	if [ ! -L ~/.tmux.conf ]; then
+		echo "> .tmux.conf exists; backing up to ~/.tmux.conf"
+		mv ~/.tmux.conf ~/.tmux.conf.backup
+	else
+		SYMDIR="$(readlink ~/.tmux.conf)"
+		echo "> .tmux.conf is a symlink; pointing to "$SYMDIR
+	fi
+	echo "> writing custom .tmux.conf as a symlink"
+	ln -sf $ROOT/tmux.conf ~/.tmux.conf
+fi
+
 # Install Powerline fonts for vim status embellishment
 ./fonts/install.sh D2Coding
 echo "> d2coding powerline font installed. Please change fonts in terminal"
