@@ -17,10 +17,10 @@ SEGMENTS = [
 #   'rbenv',
 
 # Show the current user's username as in ordinary prompts
-    'username',
+#   'username',
 
 # Show the machine's hostname. Mostly used when ssh-ing into other machines
-    'hostname',
+#   'hostname',
 
 # Show a padlock when ssh-ing from another machine
     'ssh',
@@ -34,16 +34,16 @@ SEGMENTS = [
     'read_only',
 
 # Show the current git branch and status
-    'git',
+#    'git',
 
 # Show the current mercurial branch and status
-    'hg',
+#   'hg',
 
 # Show the current svn branch and status
-    'svn',
+#   'svn',
 
 # Show the current fossil branch and status
-    'fossil',
+#   'fossil',
 
 # Show number of running jobs
     'jobs',
