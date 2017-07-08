@@ -29,10 +29,10 @@ class DefaultColor:
     SSH_BG = 166         # Orange (almost brightest)
     SSH_FG = 254         # White
 
-    REPO_CLEAN_BG = 148  # Pale green
-    REPO_CLEAN_FG = 0    # Black
-    REPO_DIRTY_BG = 161  # Pink (red)
-    REPO_DIRTY_FG = 121  # Teal (bright)
+    REPO_CLEAN_BG = 22   # Green (pale)
+    REPO_CLEAN_FG = 178  # Orange (bright)
+    REPO_DIRTY_BG = 52   # Red (deep)
+    REPO_DIRTY_FG = 166  # Orange (bright)
 
     JOBS_BG = 238        # Grey (medium)
     JOBS_FG = 39         # Blue (sky)
