@@ -27,6 +27,7 @@ Plugin 'terryma/vim-smooth-scroll'
 "=========== General/Miscellaneous plugins
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'lastsupertim/vimsuperdebug'
 
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
@@ -58,7 +59,7 @@ if has ('autocmd')
 	" Also load indent files, to automatically do language-dependent indenting.
 	filetype plugin indent on
 
-	" Fix idiotic python indentation defaults, no respect
+	" Fix python indentation defaults, no respect
 	autocmd Filetype python setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 endif
 
@@ -100,6 +101,7 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 let mapleader = " "
+nmap \ <Leader>
 
 " Wildcard search ignore settings
 set wildignore+=.git
@@ -162,9 +164,16 @@ let g:airline_theme = "bubblegum"
 
 "=== Enable the tabline extension which shows all buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_format = '[%s} '
+
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_splits = 0
+
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 
 "=== Custom fonts for airline status bar
 let g:airline_powerline_fonts = 1
