@@ -18,6 +18,7 @@ Plugin 'ludovicchabant/vim-gutentags'
 
 "=========== Autocomplete plugins
 "Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
 
 "=========== Navigation plugins
 Plugin 'christoomey/vim-tmux-navigator'
@@ -52,6 +53,18 @@ if has ('autocmd')
 	augroup RestoreCursor	" Restore cursor position when opening files"
 		autocmd!
 		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zz
+	augroup END
+
+
+	function! LoadTemplate()
+		silent! %substitute#\[vim \(.\{-\}\)\ vim\]#\=eval(submatch(1))#ge|%substitute#\[HERE\]##g
+	endfunction
+	augroup templates
+		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | call LoadTemplate()
+		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | call LoadTemplate()
+		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | call LoadTemplate()
+		autocmd BufNewFile *.h,*.hpp 0r ~/.vim/templates/skeleton.h | call LoadTemplate()
+		autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py | call LoadTemplate()
 	augroup END
 
 	" Enable file type detection.
@@ -112,6 +125,8 @@ set tabstop=4		" width of the TAB character
 set softtabstop=4
 set shiftwidth=4	" depth of single indentation level
 set noexpandtab
+set cindent			" enable advanced indentation tailored towards c-style languages
+set cino+=g0		" indent public/private keywords after typing colon ':'
 
 "=========================== Editor display
 syntax on			" Enable syntax highlighting across the board
@@ -124,7 +139,7 @@ set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
 
 set list
-set listchars=tab:>-     " > is shown at the beginning, - throughout
+set listchars=tab:\|\ " > is shown at the beginning, - throughout
 
 set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
 if has('linebreak')
@@ -143,7 +158,6 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
-
 
 "=========================== Fixes
 "=== Fix the backspace key from getting stuck on one line
@@ -205,6 +219,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+"=========================== Other customizations
+let g:tagbar_autofocus = 1
+"let g:tagbar_compact = 1
+
+"=== Custom build parameters
+let g:dev_build_dir = 'build'
+let g:dev_program = '<g:dev_program>'
+
 
 "=========================== Quickfix Toggle
 function! GetBufferList()
@@ -260,29 +282,30 @@ nnoremap <C-H> <C-W><C-H>
 
 "=== Navigation bindings
 nnoremap <Leader>q :bd\|bd #<CR>		" Destroy buffer
-nnoremap <Leader>f :cn<CR>:cf<CR>		" Open file/line for next error in quickfix window
+nnoremap <Leader>e :cn<CR>:cf<CR>		" Open file/line for next error in quickfix window
 nnoremap <Leader><S-Tab> : bp<CR>		" Previous buffer
 nnoremap <Leader><Tab> : bn<CR>			" Next buffer
-nnoremap <C-s> <Esc>:w<CR>					" Save buffer
+nnoremap <Leader>d :bp\|bd #<CR>		" Destroy buffer
 
 "=== Display toggles
 "nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
-nnoremap <silent> <Leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>f :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <Leader>t :TagbarOpenAutoClose <cr>	" :TagbarToggle<CR>
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 
 "=== Editor bindings
-nnoremap <space> za|					" Enable folding with the spacebar
+"nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 
 "=== Developer/build bindings
-nnoremap <Leader>c :Dispatch cd build && rm -rf * && cmake ..<CR>
-nnoremap <Leader>b :Dispatch pwd && make -C build<CR>
-nnoremap <Leader>r :Dispatch ./bin/alpha<CR>
+nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..'<CR>
+nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
+nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
 "=========================== Keyboard Bindings - Insert Mode
 "=== Editor bindings
 inoremap <S-Tab> <C-d>
 
+if filereadable("project.vimrc") | source ./project.vimrc | endif
