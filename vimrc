@@ -252,6 +252,8 @@ function! ToggleList(bufname, pfx)
 	endif
 endfunction
 
+" Ensure quickfix remains open if there are linker errors in clang
+setglobal errorformat^=%+Eclang:\ error:%.%#
 
 
 "=========================== YouCompleteMe plugin customization
