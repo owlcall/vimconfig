@@ -26,9 +26,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-smooth-scroll'
 
 "=========== General/Miscellaneous plugins
-Plugin 'tpope/vim-dispatch'
+Plugin 'lastsupertim/vim-dispatch'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'lastsupertim/vimsuperdebug'
 
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
@@ -281,11 +280,14 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "=== Navigation bindings
-nnoremap <Leader>q :bd\|bd #<CR>		" Destroy buffer
-nnoremap <Leader>e :cn<CR>:cf<CR>		" Open file/line for next error in quickfix window
+nnoremap <silent> <Leader>q :bd\|bd #<CR>		" Destroy buffer
 nnoremap <Leader><S-Tab> : bp<CR>		" Previous buffer
 nnoremap <Leader><Tab> : bn<CR>			" Next buffer
 nnoremap <Leader>d :bp\|bd #<CR>		" Destroy buffer
+
+"=== Quickfix navigation
+nnoremap <silent> <Leader>e :cn <CR>		" Open file/line for next error in quickfix window
+nnoremap <silent> <Leader><S-e> :cp <CR>	" Open file/line for previous error in quickfix window
 
 "=== Display toggles
 "nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
@@ -298,9 +300,10 @@ nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
 "=== Editor bindings
 "nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
+nnoremap <Leader><S-w> :w<CR>
 
 "=== Developer/build bindings
-nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..'<CR>
+nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' 
 nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
 nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
