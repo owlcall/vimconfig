@@ -63,7 +63,8 @@ fi
 
 # Install vim templates
 echo "> installing vim templates..."
-ln -s vim/templates ~/.vim/templates
+mv ~/.vim/templates ~/.vim/templates.backup
+cp -r vim/templates ~/.vim/templates
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."

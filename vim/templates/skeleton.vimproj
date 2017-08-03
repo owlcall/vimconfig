@@ -1,3 +1,9 @@
+"
+" [vim expand('%:t') vim]
+"
+" Created by [vim $USER vim] on [vim strftime('%m/%d/%Y') vim]
+" Copyright © [vim strftime('%Y') vim]. All rights reserved.
+"
 
-let g:dev_build_dir = 'build'
+[HERE]let g:dev_build_dir = 'build'
 let g:dev_program = 'bin/binary'

@@ -319,4 +319,4 @@ nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' .
 nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
 nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
-if filereadable("project.vimrc") | source ./project.vimrc | endif
+if filereadable("project.vimproj") | source ./project.vimproj | endif
