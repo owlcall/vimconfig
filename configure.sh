@@ -59,6 +59,9 @@ vim +PluginInstall +qall
 echo "> Installing vim templates..."
 ln -s templates ~/.vim/templates
 
+# Install tmux themes
+git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+
 # Ensure ctags exists
 if ! hash ctags 2>/dev/null; then
 	echo "> ctags is not installed; remember to install ctags"
