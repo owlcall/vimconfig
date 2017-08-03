@@ -311,7 +311,7 @@ nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 nnoremap <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
-nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' 
+nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
 nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
 nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
