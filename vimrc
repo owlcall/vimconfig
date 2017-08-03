@@ -87,11 +87,11 @@ set antialias		" Enable antialiasing on Mac OS X
 set encoding=utf-8	" Default utf-8 encoding
 set history=1024	" Increase command history
 
-set shortmess+=O                      " file-read message overwrites previous
-set shortmess+=o                      " overwrite file-written messages
+set shortmess+=O	" file-read message overwrites previous
+set shortmess+=o	" overwrite file-written messages
 
 if exists('&belloff')
-  set belloff=all                     " never ring the bell for any reason
+  set belloff=all	" never ring the bell for any reason
 endif
 
 if exists('$SUDO_USER')
@@ -138,9 +138,9 @@ set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
 
 set list
-set listchars=tab:\|\ " > is shown at the beginning, - throughout
+set listchars=tab:\|\ " | is shown at the beginning, - throughout
 
-set nojoinspaces                      " don't autoinsert two spaces after '.', '?', '!' for join command
+set nojoinspaces					" don't autoinsert two spaces after '.', '?', '!' for join command
 if has('linebreak')
 	let &showbreak='⤷ '                 " ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS (U+2937, UTF-8: E2 A4 B7)
 endif
@@ -274,6 +274,11 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 3)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 3)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 3)<CR>
 
+
+"=========================== Keyboard Bindings - Insert Mode
+"=== Editor bindings
+inoremap <S-Tab> <C-d>				" Unindent by a single tab
+
 "=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -282,10 +287,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "=== Navigation bindings
-nnoremap <silent> <Leader>q :bd\|bd #<CR>		" Destroy buffer
-nnoremap <Leader><S-Tab> : bp<CR>		" Previous buffer
-nnoremap <Leader><Tab> : bn<CR>			" Next buffer
-nnoremap <Leader>d :bp\|bd #<CR>		" Destroy buffer
+nnoremap <silent> <Leader>q :bd\|bd #<CR>	" Destroy buffer
+nnoremap <Leader><S-Tab> : bp<CR>			" Previous buffer
+nnoremap <Leader><Tab> : bn<CR>				" Next buffer
+nnoremap <Leader>d :bp\|bd #<CR>			" Destroy buffer
 
 "=== Quickfix navigation
 nnoremap <silent> <Leader>e :cn <CR>		" Open file/line for next error in quickfix window
@@ -293,24 +298,21 @@ nnoremap <silent> <Leader><S-e> :cp <CR>	" Open file/line for previous error in 
 
 "=== Display toggles
 "nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <leader>f :call ToggleList("Quickfix List", 'c')<CR>
-nnoremap <silent> <Leader>t :TagbarOpenAutoClose <cr>	" :TagbarToggle<CR>
-nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>
+nnoremap <silent> <leader>f :call ToggleList("Quickfix List", 'c')<CR>	" Toggle quickfix view
+nnoremap <silent> <Leader>t :TagbarOpenAutoClose <CR>					" Open tagbar, close after navigating tag
+nnoremap <silent> <Leader><Leader> :nohlsearch<CR>						" Clear highlighting
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>							" Clear highlighting
+nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>			" Toggle line numbers
+nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 
 "=== Editor bindings
 "nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
-nnoremap <Leader><S-w> :w<CR>
+nnoremap <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
 nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' 
 nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
 nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
-
-"=========================== Keyboard Bindings - Insert Mode
-"=== Editor bindings
-inoremap <S-Tab> <C-d>
 
 if filereadable("project.vimrc") | source ./project.vimrc | endif

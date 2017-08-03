@@ -55,6 +55,10 @@ fi
 # Install vim plugins
 vim +PluginInstall +qall
 
+# Install vim templates
+echo "> Installing vim templates..."
+ln -s templates ~/.vim/templates/
+
 # Ensure ctags exists
 if ! hash ctags 2>/dev/null; then
 	echo "> ctags is not installed; remember to install ctags"
