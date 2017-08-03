@@ -2,6 +2,7 @@
 
 ROOT=$( cd "$( dirname "$0" )" && pwd )
 
+# Setup vimrc file
 if [ ! -f ~/.vimrc ]; then
     echo "> .vimrc file not found"
 	echo "> writing custom .vimrc as a symlink"
@@ -15,10 +16,10 @@ else
 		echo "> .vimrc is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .vimrc as a symlink"
-	ln -sf $ROOT/vimrc ~/.vimrc
+	ln -sf $ROOT/vim/vimrc ~/.vimrc
 fi
 
-
+# Setup tmux config file
 if [ ! -f ~/.tmux.conf ]; then
     echo "> .tmux.conf file not found"
 	echo "> writing custom .tmux.conf as a symlink"
@@ -32,11 +33,16 @@ else
 		echo "> .tmux.conf is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .tmux.conf as a symlink"
-	ln -sf $ROOT/tmux.conf ~/.tmux.conf
+	ln -sf $ROOT/tmux/tmux.conf ~/.tmux.conf
+fi
+
+# Ensure ctags exists
+if ! hash ctags 2>/dev/null; then
+	echo "> ctags is not installed; remember to install ctags"
 fi
 
 # Install Powerline fonts for vim status embellishment
-./fonts/install.sh D2Coding
+./powerline/fonts/install.sh D2Coding
 echo "> d2coding powerline font installed. Please change fonts in terminal"
 
 # Ensure vim exists
@@ -46,28 +52,23 @@ if hash vim 2>/dev/null; then
 	if [ ! -d ~/.vim/bundle ]; then mkdir -p ~/.vim/bundle;	fi
 	if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		vim +PluginInstall +qall
 	fi
 else
 	echo >&2 "> error: vim is missing. install vim and re-run config";
 	exit 1;
 fi
 
-# Install vim plugins
-vim +PluginInstall +qall
-
 # Install vim templates
-echo "> Installing vim templates..."
-ln -s templates ~/.vim/templates
-
-# Ensure ctags exists
-if ! hash ctags 2>/dev/null; then
-	echo "> ctags is not installed; remember to install ctags"
-fi
+echo "> installing vim templates..."
+ln -s vim/templates ~/.vim/templates
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
-cp altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
+echo "> installing airline theme..."
+cp vim/altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
 # Install tmux theme
+echo "> installing tmux theme..."
 mkdir -p ~/.tmux/themes
-cp cyan.tmuxtheme ~/.tmux/themes/
+cp tmux/cyan.tmuxtheme ~/.tmux/themes/
 
