@@ -66,3 +66,8 @@ fi
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 cp altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
+
+# Install tmux theme
+mkdir -p ~/.tmux/themes
+cp cyan.tmuxtheme ~/.tmux/themes/
+
