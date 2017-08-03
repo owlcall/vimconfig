@@ -6,11 +6,12 @@ ROOT=$( cd "$( dirname "$0" )" && pwd )
 if [ ! -f ~/.vimrc ]; then
     echo "> .vimrc file not found"
 	echo "> writing custom .vimrc as a symlink"
-	ln -sf $ROOT/vimrc ~/.vimrc
+	ln -sf $ROOT/vim/vimrc ~/.vimrc
 else
 	if [ ! -L ~/.vimrc ]; then
 		echo "> .vimrc exists; backing up to ~/.vimrc_backup"
 		mv ~/.vimrc ~/.vimrc_backup
+		rm ~/.vimrc
 	else
 		SYMDIR="$(readlink ~/.vimrc)"
 		echo "> .vimrc is a symlink; pointing to "$SYMDIR
@@ -23,11 +24,12 @@ fi
 if [ ! -f ~/.tmux.conf ]; then
     echo "> .tmux.conf file not found"
 	echo "> writing custom .tmux.conf as a symlink"
-	ln -sf $ROOT/tmux.conf ~/.tmux.conf 
+	ln -sf $ROOT/tmux/tmux.conf ~/.tmux.conf 
 else
 	if [ ! -L ~/.tmux.conf ]; then
 		echo "> .tmux.conf exists; backing up to ~/.tmux.conf"
 		mv ~/.tmux.conf ~/.tmux.conf.backup
+		rm ~/.tmux.conf
 	else
 		SYMDIR="$(readlink ~/.tmux.conf)"
 		echo "> .tmux.conf is a symlink; pointing to "$SYMDIR
