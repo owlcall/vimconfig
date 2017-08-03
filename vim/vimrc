@@ -49,11 +49,14 @@ if has ('autocmd')
 		autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
 	augroup END
 
-	augroup RestoreCursor	" Restore cursor position when opening files"
+	augroup RestoreCursor	" Restore cursor position when opening files
 		autocmd!
 		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zz
 	augroup END
 
+	augroup DetectFiletype	" Assign syntax coloring for custom file extensions
+		autocmd BufRead,BufNewFile *.vimproj set filetype=vim
+	augroup END
 
 	function! LoadTemplate()
 		silent! %substitute#\[vim \(.\{-\}\)\ vim\]#\=eval(submatch(1))#ge|%substitute#\[HERE\]##g
@@ -64,6 +67,7 @@ if has ('autocmd')
 		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | call LoadTemplate()
 		autocmd BufNewFile *.h,*.hpp 0r ~/.vim/templates/skeleton.h | call LoadTemplate()
 		autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py | call LoadTemplate()
+		autocmd BufNewFile *.vimproj 0r ~/.vim/templates/skeleton.vimproj | call LoadTemplate()
 	augroup END
 
 	" Enable file type detection.
