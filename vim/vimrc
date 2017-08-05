@@ -141,8 +141,8 @@ set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
 
-set list
-set listchars=tab:\|\ " | is shown at the beginning, - throughout
+"set list
+"set listchars=tab:\|\ " | is shown at the beginning, - throughout
 
 set nojoinspaces					" don't autoinsert two spaces after '.', '?', '!' for join command
 if has('linebreak')
