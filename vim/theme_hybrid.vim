@@ -102,7 +102,6 @@ let s:palette.gui.selection  = { 'dark' : s:gui_selection  , 'light' : "#bcbcbc"
 let s:palette.gui.line       = { 'dark' : s:gui_line       , 'light' : "#d0d0d0" }
 let s:palette.gui.comment    = { 'dark' : s:gui_comment    , 'light' : "#5f5f5f" }
 let s:palette.gui.red        = { 'dark' : "#cc6666"        , 'light' : "#5f0000" }
-let s:palette.gui.white      = { 'dark' : "#ffffff"        , 'light' : "#eeeeee" }
 let s:palette.gui.orange     = { 'dark' : "#de935f"        , 'light' : "#875f00" }
 let s:palette.gui.yellow     = { 'dark' : "#f0c674"        , 'light' : "#5f5f00" }
 let s:palette.gui.green      = { 'dark' : "#b5bd68"        , 'light' : "#005f00" }
@@ -125,7 +124,7 @@ if exists("g:hybrid_custom_term_colors") && g:hybrid_custom_term_colors == 1
   let s:cterm_foreground = "15"  " White
   let s:cterm_selection  = "8"   " DarkGrey
   let s:cterm_line       = "0"   " Black
-  let s:cterm_comment    = "2"   " LightGrey
+  let s:cterm_comment    = "7"   " LightGrey
   let s:cterm_red        = "9"   " LightRed
   let s:cterm_orange     = "3"   " DarkYellow
   let s:cterm_yellow     = "11"  " LightYellow
@@ -135,14 +134,13 @@ if exists("g:hybrid_custom_term_colors") && g:hybrid_custom_term_colors == 1
   let s:cterm_purple     = "13"  " LightMagenta
   let s:cterm_delbg      = "9"   " LightRed
 else
-  let s:cterm_foreground = "250"
+  let s:cterm_foreground = "249"
   let s:cterm_selection  = "237"
   let s:cterm_line       = "235"
   let s:cterm_comment    = "28"
-  let s:cterm_white      = "15"
   let s:cterm_red        = "167"
   let s:cterm_orange     = "173"
-  let s:cterm_yellow     = "221"
+  let s:cterm_yellow     = "215"
   let s:cterm_green      = "143"
   let s:cterm_aqua       = "109"
   let s:cterm_blue       = "110"
@@ -150,13 +148,12 @@ else
   let s:cterm_delbg      = "167"
 endif
 
-let s:palette.cterm.background = { 'dark' : "234"              , 'light' : "254" }
+let s:palette.cterm.background = { 'dark' : "NONE"              , 'light' : "254" }
 let s:palette.cterm.foreground = { 'dark' : s:cterm_foreground , 'light' : "16"  }
 let s:palette.cterm.window     = { 'dark' : "236"              , 'light' : "247" }
 let s:palette.cterm.selection  = { 'dark' : s:cterm_selection  , 'light' : "250" }
 let s:palette.cterm.line       = { 'dark' : s:cterm_line       , 'light' : "252" }
 let s:palette.cterm.comment    = { 'dark' : s:cterm_comment    , 'light' : "59"  }
-let s:palette.cterm.white      = { 'dark' : s:cterm_white      , 'light' : "52"  }
 let s:palette.cterm.red        = { 'dark' : s:cterm_red        , 'light' : "52"  }
 let s:palette.cterm.orange     = { 'dark' : s:cterm_orange     , 'light' : "94"  }
 let s:palette.cterm.yellow     = { 'dark' : s:cterm_yellow     , 'light' : "58"  }
@@ -236,7 +233,6 @@ call s:build_prim('fg', 'yellow')
 call s:build_prim('fg', 'green')
 call s:build_prim('fg', 'aqua')
 call s:build_prim('fg', 'blue')
-call s:build_prim('fg', 'white')
 call s:build_prim('fg', 'purple')
 call s:build_prim('fg', 'window')
 call s:build_prim('fg', 'darkcolumn')
@@ -347,26 +343,25 @@ exe "hi! Normal"        .s:fg_foreground  .s:bg_normal      .s:fmt_none
 " ----------------------------------------------------------------------------
 exe "hi! Comment"         .s:fg_comment     .s:bg_none        .s:fmt_none
 
-exe "hi! Constant"        .s:fg_purple      .s:bg_none        .s:fmt_none
+exe "hi! Constant"        .s:fg_purple         .s:bg_none        .s:fmt_none
 exe "hi! String"          .s:fg_red       .s:bg_none        .s:fmt_none
 "   Character"
 "   Number"
 "   Boolean"
 "   Float"
 
-exe "hi! Identifier"      .s:fg_white      .s:bg_none        .s:fmt_none
+exe "hi! Identifier"      .s:fg_yellow      .s:bg_none        .s:fmt_none
 exe "hi! Function"        .s:fg_blue      .s:bg_none        .s:fmt_none
 
 exe "hi! Statement"       .s:fg_blue        .s:bg_none        .s:fmt_none
 "   Conditional"
 "   Repeat"
 "   Label"
-exe "hi! Operator"        .s:fg_white       .s:bg_none        .s:fmt_none
-exe "hi! Keyword"         .s:fg_purple      .s:bg_none        .s:fmt_none
+exe "hi! Operator"        .s:fg_yellow        .s:bg_none        .s:fmt_none
 "   Keyword"
 "   Exception"
 
-exe "hi! PreProc"         .s:fg_orange      .s:bg_none        .s:fmt_none
+exe "hi! PreProc"         .s:fg_orange        .s:bg_none        .s:fmt_none
 "   Include"
 "   Define"
 "   Macro"
@@ -374,7 +369,7 @@ exe "hi! PreProc"         .s:fg_orange      .s:bg_none        .s:fmt_none
 
 exe "hi! Type"            .s:fg_purple      .s:bg_none        .s:fmt_none
 "   StorageClass"
-exe "hi! Structure"       .s:fg_aqua        .s:bg_none        .s:fmt_none
+exe "hi! Structure"       .s:fg_purple        .s:bg_none        .s:fmt_none
 "   Typedef"
 
 exe "hi! Special"         .s:fg_green       .s:bg_none        .s:fmt_none

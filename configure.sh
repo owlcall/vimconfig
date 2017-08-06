@@ -70,6 +70,9 @@ cp -r vim/templates ~/.vim/templates
 echo "> installing airline theme..."
 cp vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
+echo "> installing syntax theme..."
+cp vim/theme_hybrid.vim ~/.vim/bundle/vim-hybrid/colors/hybrid.vim
+
 # Install tmux theme
 echo "> installing tmux theme..."
 mkdir -p ~/.tmux/themes
