@@ -77,6 +77,9 @@ if has ('autocmd')
 
 	" Fix python indentation defaults, no respect
 	autocmd Filetype python setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+	autocmd WinEnter * set cursorline		" Highlight cursor line
+	autocmd WinLeave * set nocursorline		" Highlight cursor line
+
 endif
 
 
@@ -174,6 +177,7 @@ if &term =~ '^screen'
 	execute "set <xRight>=\e[1;*C"
 	execute "set <xLeft>=\e[1;*D"
 endif
+
 
 
 "=========================== Airline plugin customization
