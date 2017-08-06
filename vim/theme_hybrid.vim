@@ -134,7 +134,7 @@ if exists("g:hybrid_custom_term_colors") && g:hybrid_custom_term_colors == 1
   let s:cterm_purple     = "13"  " LightMagenta
   let s:cterm_delbg      = "9"   " LightRed
 else
-  let s:cterm_foreground = "249"
+  let s:cterm_foreground = "250"
   let s:cterm_selection  = "237"
   let s:cterm_line       = "235"
   let s:cterm_comment    = "28"
