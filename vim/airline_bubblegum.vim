@@ -2,6 +2,8 @@
 let s:transparent = ''
 let s:gui_white = '#ffffff'
 let s:cterm_white = 255
+let s:gui_black = '#000000'
+let s:cterm_black = 0
 let s:gui_dark_gray = '#303030'
 let s:cterm_dark_gray = 236
 let s:gui_med_gray_hi = '#444444'
@@ -12,6 +14,8 @@ let s:gui_light_gray = '#b2b2b2'
 let s:cterm_light_gray = 249
 let s:gui_green = '#afd787'
 let s:cterm_green = 70
+let s:gui_dark_green = '#afd787'
+let s:cterm_dark_green = 22
 let s:gui_blue = '#87afd7'
 let s:cterm_blue = 27
 let s:gui_purple = '#afafd7'
@@ -25,12 +29,15 @@ let s:cterm_bright_red = 9
 let s:gui_pink = '#d7afd7'
 let s:cterm_pink = 182
 
+let s:gui_borders = '#cccccc'
+let s:cterm_borders = s:cterm_med_gray_hi
+
 let g:airline#themes#bubblegum#palette = {}
 
 " Normal mode
-let s:N1 = [s:gui_dark_gray, s:gui_green, s:cterm_dark_gray, s:cterm_green]
+let s:N1 = [s:gui_dark_gray, s:gui_green, s:cterm_black, s:cterm_green]
 let s:N2 = [s:gui_light_gray, s:gui_med_gray_lo, s:cterm_light_gray, s:cterm_med_gray_lo]
-let s:N3 = [s:gui_green, s:gui_med_gray_hi, s:cterm_green, s:cterm_med_gray_hi]
+let s:N3 = [s:gui_green, s:gui_med_gray_hi, s:cterm_green, s:cterm_dark_green]
 let g:airline#themes#bubblegum#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 let g:airline#themes#bubblegum#palette.normal_modified = {
       \ 'airline_c': [s:gui_orange, s:gui_med_gray_hi, s:cterm_orange, s:cterm_med_gray_hi, ''],
@@ -73,3 +80,4 @@ let g:airline#themes#bubblegum#palette.ctrlp = airline#extensions#ctrlp#generate
       \ [ s:gui_orange, s:gui_med_gray_hi, s:cterm_orange, s:cterm_med_gray_hi, '' ] ,
       \ [ s:gui_orange, s:gui_med_gray_lo, s:cterm_orange, s:cterm_med_gray_lo, '' ] ,
       \ [ s:gui_dark_gray, s:gui_green, s:cterm_dark_gray, s:cterm_green, 'bold' ] )
+

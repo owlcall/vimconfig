@@ -179,7 +179,6 @@ if &term =~ '^screen'
 endif
 
 
-
 "=========================== Airline plugin customization
 let g:airline_theme = "bubblegum"
 
@@ -216,6 +215,8 @@ let g:airline_section_warning = ''
 "let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 "let g:airline_section_warning (ycm_warning_count, whitespace)
 
+" Ensure the vertical bars match the airline colors in the horizontal highlights
+hi VertSplit ctermbg=238 ctermfg=238
 
 "=== Custom fonts for airline status bar
 let g:airline_powerline_fonts = 0
@@ -370,3 +371,5 @@ nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
 nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
 if filereadable("project.vimproj") | source ./project.vimproj | endif
+
+
