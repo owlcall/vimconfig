@@ -68,7 +68,7 @@ cp -r vim/templates ~/.vim/templates
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
-cp vim/altheme_bubblegum_mk2.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
+cp vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
 # Install tmux theme
 echo "> installing tmux theme..."
