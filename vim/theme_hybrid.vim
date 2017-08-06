@@ -140,9 +140,9 @@ else
   let s:cterm_comment    = "28"
   let s:cterm_red        = "167"
   let s:cterm_orange     = "173"
-  let s:cterm_yellow     = "215"
+  let s:cterm_yellow     = "221"
   let s:cterm_green      = "143"
-  let s:cterm_aqua       = "109"
+  let s:cterm_aqua       = "111"
   let s:cterm_blue       = "110"
   let s:cterm_purple     = "163"
   let s:cterm_delbg      = "167"
@@ -350,14 +350,14 @@ exe "hi! String"          .s:fg_red       .s:bg_none        .s:fmt_none
 "   Boolean"
 "   Float"
 
-exe "hi! Identifier"      .s:fg_yellow      .s:bg_none        .s:fmt_none
+exe "hi! Identifier"      .s:fg_aqua      .s:bg_none        .s:fmt_none
 exe "hi! Function"        .s:fg_blue      .s:bg_none        .s:fmt_none
 
 exe "hi! Statement"       .s:fg_blue        .s:bg_none        .s:fmt_none
 "   Conditional"
 "   Repeat"
 "   Label"
-exe "hi! Operator"        .s:fg_yellow        .s:bg_none        .s:fmt_none
+exe "hi! Operator"        .s:fg_aqua        .s:bg_none        .s:fmt_none
 "   Keyword"
 "   Exception"
 
