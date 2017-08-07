@@ -23,7 +23,7 @@ Plugin 'jiangmiao/auto-pairs'
 "=========== Navigation plugins
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'kien/ctrlp.vim'
-Plugin 'terryma/vim-smooth-scroll'
+"Plugin 'terryma/vim-smooth-scroll'
 
 "=========== General/Miscellaneous plugins
 Plugin 'lastsupertim/vim-dispatch'
@@ -32,7 +32,7 @@ Plugin 'scrooloose/nerdcommenter'
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
 
 ""=========== Themes
 Plugin 'w0ng/vim-hybrid'
@@ -143,27 +143,11 @@ set cursorline		" Highlight cursor line
 set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
-
-"set list
-"set listchars=tab:\|\ " | is shown at the beginning, - throughout
-
-set nojoinspaces					" don't autoinsert two spaces after '.', '?', '!' for join command
-if has('linebreak')
-	let &showbreak='⤷ '                 " ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS (U+2937, UTF-8: E2 A4 B7)
-endif
-
-" Show autocomplete options as visible menu when pressing tab on command line
-set wildchar=<Tab> wildmenu wildmode=full
+set nojoinspaces	" don't autoinsert two spaces after '.', '?', '!' for join command
 
 "=========================== Theme settings
 set background=dark
 colorscheme hybrid
-
-" C++ Syntax Hilighting
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
 
 "=========================== Fixes
 "=== Fix the backspace key from getting stuck on one line
@@ -190,65 +174,22 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '| %s '
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_splits = 0
-
-let g:airline_detect_paste = 1
-let g:airline_detect_modified = 1
 let g:airline_symbols_ascii = 1
 
-let g:airline_section_a = ''
-let g:airline_section_b = ''
-"let g:airline_section_b = '%{getcwd()}'
-"let g:airline_section_c = '%t'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '[%#__accent_bold#%4l% :%3v]'
-"let g:airline_section_z = '%3p%% %#__accent_bold#%{g:airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__# :%3v'
-let g:airline_section_error   = ''
-let g:airline_section_warning = ''
-
-"let g:airline#extensions#disable_rtp_load = 1
-"let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
-"let g:airline_section_b       (hunks, branch)
-"let g:airline_section_c       (bufferline or filename)
-"let g:airline_section_gutter  (readonly, csv)
-"let g:airline_section_x       (tagbar, filetype, virtualenv)
-"let g:airline_section_y       (fileencoding, fileformat)
-"let g:airline_section_z       (percentage, line number, column number)
-"let g:airline_section_error   (ycm_error_count, syntastic, eclim)
-"let g:airline_section_warning (ycm_warning_count, whitespace)
+let g:airline_section_a = ''		" mode/crypt/paste/spell
+let g:airline_section_b = ''		" branch
+"let g:airline_section_c = '%t'		" bufferline or filename
+let g:airline_section_x = ''		" tagbar/filetype/virtualenv
+let g:airline_section_y = ''		" encoding/fileformat
+let g:airline_section_z = '%l : %v' " line : column indicator
+let g:airline_section_error   = ''	" errors notification
+let g:airline_section_warning = ''	" warnings notification
 
 " Ensure the vertical bars match the airline colors in the horizontal highlights
 hi VertSplit ctermbg=238 ctermfg=238
 
 "=== Custom fonts for airline status bar
 let g:airline_powerline_fonts = 0
-
-"if !exists('g:airline_symbols')
-    "let g:airline_symbols = {}
-"endif
-
-""=== Unicode symbols
-"let g:airline_left_sep = ' '
-"let g:airline_left_sep = ' '
-"let g:airline_right_sep = ' '
-"let g:airline_right_sep = ' '
-"let g:airline_symbols.linenr = ' '
-"let g:airline_symbols.linenr = ' '
-"let g:airline_symbols.linenr = ' '
-"let g:airline_symbols.branch = ' '
-"let g:airline_symbols.paste = ' '
-"let g:airline_symbols.paste = ' '
-"let g:airline_symbols.paste = ' '
-"let g:airline_symbols.whitespace = ' '
-
-""=== Airline symbols
-"let g:airline_left_sep = ' '
-"let g:airline_left_alt_sep = ' '
-"let g:airline_right_sep = ' '
-"let g:airline_right_alt_sep = ' '
-"let g:airline_symbols.branch = ' '
-"let g:airline_symbols.readonly = ' '
-"let g:airline_symbols.linenr = ' '
 
 "=========================== Other customizations
 let g:tagbar_autofocus = 1
@@ -312,29 +253,12 @@ endfunction
 " Ensure quickfix remains open if there are linker errors in clang
 setglobal errorformat^=%+Eclang:\ error:%.%#
 
-
-"=========================== YouCompleteMe plugin customization
-
-"=== Autocomplete config file (for c-family languages)
-"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' 
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-
 "=========================== Tagging configuration
-set tags=./tags,tags;$HOME					" Seach in current directory, current file's directory, or up dir until $HOME
-set statusline+=%{gutentags#statusline()}	" Display notice when gutentags is generating tags
+set tags=./tags,tags;		" Seach in current dir, current file's dir, or up dir until $HOME
 
 "=========================== Scroll Controls
-
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 3)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 3)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 3)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 3)<CR>
-
-
-"=========================== Keyboard Bindings - Insert Mode
-"=== Editor bindings
-inoremap <S-Tab> <C-d>				" Unindent by a single tab
+noremap <silent> <c-u> 12<C-y>12k
+noremap <silent> <c-d> 12<C-e>12j
 
 "=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
@@ -364,8 +288,8 @@ nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 
 "=== Editor bindings
 "nnoremap <space> za|					" Enable folding with the spacebar
-nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
-nnoremap <Leader><S-w> :w<CR>			" Save file
+nnoremap <silent> <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
+nnoremap <silent> <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
 nnoremap <silent> <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
