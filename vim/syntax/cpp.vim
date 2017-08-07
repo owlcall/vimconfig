@@ -10,9 +10,7 @@ endif
 " Keywords
 "=============================================================================
 "syn keyword syntaxElementKeyword keyword1 keyword2 nextgroup=syntaxElement2
-syn keyword STL				string
-syn keyword STL				dynamic_pointer_cast
-syn keyword STL				static_pointer_cast
+syn keyword STLTypes		string
 
 syn keyword CustomTypes		Hash  
 syn keyword CustomFuncs 	make_hash
