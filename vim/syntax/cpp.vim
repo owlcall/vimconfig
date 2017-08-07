@@ -14,7 +14,6 @@ syn keyword STLTypes		string
 
 syn keyword CustomTypes		Hash  
 syn keyword CustomFuncs 	make_hash
-syn keyword CustomMacro 	LOG 
 
 " Matches
 "=============================================================================
