@@ -9,15 +9,10 @@ endif
 
 " Keywords
 "=============================================================================
-"syn keyword syntaxElementKeyword keyword1 keyword2 nextgroup=syntaxElement2
-syn keyword STLTypes		string
-
-"syn keyword CustomTypes		Hash  
-"syn keyword CustomFuncs 	make_hash
+syn keyword CustomTypes		string
 
 " Matches
 "=============================================================================
-"syn match syntaxElementMatch 'regexp' contains=syntaxElement1 nextgroup=syntaxElement2 skipwhite
 
 " Match C++ namespaces and parameterized functions
 syn match   cCustomParen    "(" contains=cParen,cCppParen
@@ -31,13 +26,12 @@ syn match	Macro			"\v<[A-Z0-9_]+>"	" All uppercase words
 
 " Regions
 "=============================================================================
-"syn region syntaxElementRegion start='x' end='y'
 
 " Highlighting the keywords
 "=============================================================================
 
 hi def link STLTypes		Type
-hi def link CustomTypes 	Type
+hi def link CustomTypes 	Function
 
 hi def link Macro 			PreProc
 hi def link CustomMacro 	PreProc
