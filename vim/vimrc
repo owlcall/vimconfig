@@ -345,9 +345,9 @@ nnoremap <C-H> <C-W><C-H>
 
 "=== Navigation bindings
 nnoremap <silent> <Leader>q :bd\|bd #<CR>	" Destroy buffer
-nnoremap <Leader><S-Tab> : bp<CR>			" Previous buffer
-nnoremap <Leader><Tab> : bn<CR>				" Next buffer
-nnoremap <Leader>d :bp\|bd #<CR>			" Destroy buffer
+nnoremap <silent> <Leader><S-Tab> : bp<CR>			" Previous buffer
+nnoremap <silent> <Leader><Tab> : bn<CR>				" Next buffer
+nnoremap <silent> <Leader>d :bp\|bd #<CR>			" Destroy buffer
 
 "=== Quickfix navigation
 nnoremap <silent> <Leader>e :cn <CR>		" Open file/line for next error in quickfix window
@@ -359,7 +359,7 @@ nnoremap <silent> <leader>f :call ToggleList("Quickfix List", 'c')<CR>	" Toggle 
 nnoremap <silent> <Leader>t :call ToggleTagbar() <CR>					" Open tagbar, close after navigating tag
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>						" Clear highlighting
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>							" Clear highlighting
-nnoremap <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>			" Toggle line numbers
+nnoremap <silent> <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>			" Toggle line numbers
 nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 
 "=== Editor bindings
@@ -368,9 +368,9 @@ nnoremap <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
 nnoremap <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
-nnoremap <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
-nnoremap <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
-nnoremap <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
+nnoremap <silent> <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
+nnoremap <silent> <Leader>b :execute 'Dispatch pwd && make -C' . g:dev_build_dir <CR>
+nnoremap <silent> <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
 if filereadable("project.vimproj") | source ./project.vimproj | endif
 
