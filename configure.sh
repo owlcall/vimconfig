@@ -66,6 +66,11 @@ echo "> installing vim templates..."
 mv ~/.vim/templates ~/.vim/templates.backup
 cp -r vim/templates ~/.vim/templates
 
+# Installing vim syntax files
+echo "> installing vim syntax files..."
+mkdir -p ~/.vim/syntax
+cp vim/syntax/* ~/.vim/syntax/
+
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
 cp vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim

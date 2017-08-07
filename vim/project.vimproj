@@ -1,0 +1,10 @@
+
+let g:dev_build_dir = 'build'
+let g:dev_program = 'bin/binary'
+
+set path+=inc
+set path+=src
+set path+=lib
+set path+=bin
+
+set path+=tests
