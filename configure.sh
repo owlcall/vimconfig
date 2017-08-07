@@ -69,14 +69,14 @@ cp -r vim/templates ~/.vim/templates
 # Installing vim syntax files
 echo "> installing vim syntax files..."
 mkdir -p ~/.vim/syntax
-cp vim/syntax/* ~/.vim/syntax/
+ln -sf $ROOT/vim/syntax/* ~/.vim/syntax/
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
 cp vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
 echo "> installing syntax theme..."
-cp vim/theme_hybrid.vim ~/.vim/bundle/vim-hybrid/colors/hybrid.vim
+ln -sf $ROOT/vim/theme_hybrid.vim ~/.vim/bundle/vim-hybrid/colors/hybrid.vim
 
 # Install tmux theme
 echo "> installing tmux theme..."

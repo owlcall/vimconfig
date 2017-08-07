@@ -354,12 +354,12 @@ exe "hi! String"          .s:fg_red       .s:bg_none        .s:fmt_none
 exe "hi! Identifier"      .s:fg_aqua      .s:bg_none        .s:fmt_none
 exe "hi! Function"        .s:fg_blue      .s:bg_none        .s:fmt_none
 
-exe "hi! Statement"       .s:fg_blue        .s:bg_none        .s:fmt_none
-"   Conditional"
+exe "hi! Statement"       .s:fg_purple        .s:bg_none        .s:fmt_none
+exe "hi! Conditional"     .s:fg_purple      .s:bg_none        .s:fmt_none
+exe "hi! Keyword"		  .s:fg_purple      .s:bg_none        .s:fmt_none
+exe "hi! Label"			  .s:fg_purple      .s:bg_none        .s:fmt_none
 "   Repeat"
-"   Label"
 exe "hi! Operator"        .s:fg_aqua        .s:bg_none        .s:fmt_none
-"   Keyword"
 "   Exception"
 
 exe "hi! PreProc"         .s:fg_orange        .s:bg_none        .s:fmt_none

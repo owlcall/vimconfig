@@ -12,8 +12,8 @@ endif
 "syn keyword syntaxElementKeyword keyword1 keyword2 nextgroup=syntaxElement2
 syn keyword STLTypes		string
 
-syn keyword CustomTypes		Hash  
-syn keyword CustomFuncs 	make_hash
+"syn keyword CustomTypes		Hash  
+"syn keyword CustomFuncs 	make_hash
 
 " Matches
 "=============================================================================
