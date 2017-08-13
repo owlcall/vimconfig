@@ -257,8 +257,8 @@ setglobal errorformat^=%+Eclang:\ error:%.%#
 set tags=./tags,tags;		" Seach in current dir, current file's dir, or up dir until $HOME
 
 "=========================== Scroll Controls
-noremap <silent> <c-u> 12<C-y>12k
-noremap <silent> <c-d> 12<C-e>12j
+"noremap <silent> <c-u> 12<C-y>12k
+"noremap <silent> <c-d> 12<C-e>12j
 
 "=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
