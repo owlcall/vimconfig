@@ -267,6 +267,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"=== Split resizing
+nnoremap <Down> <C-w>-
+nnoremap <Up> <C-w>+
+nnoremap <Left> <C-w><
+nnoremap <Right> <C-w>>
+
 "=== Navigation bindings
 nnoremap <silent> <Leader>q :bd\|bd #<CR>	" Destroy buffer
 nnoremap <silent> <Leader><S-Tab> : bp<CR>			" Previous buffer
