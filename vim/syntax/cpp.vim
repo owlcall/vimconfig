@@ -9,7 +9,6 @@ endif
 
 " Keywords
 "=============================================================================
-syn keyword CustomTypes		string
 
 " Matches
 "=============================================================================
@@ -29,17 +28,12 @@ syn match	Macro			"\v<[A-Z0-9_]+>"	" All uppercase words
 
 " Highlighting the keywords
 "=============================================================================
-
-hi def link STLTypes		Type
-hi def link CustomTypes 	Function
-
 hi def link Macro 			PreProc
-hi def link CustomMacro 	PreProc
 
 " Generic C++ highlight matches (functions/constructors/methods/namespaces)
 hi def link STLFuncs		Function
 hi def link CustomFuncs		Function
 hi def link cCustomFunc 	Function
 hi def link cCustomClass	Function
-
+hi def link cCustomScope	Function
 

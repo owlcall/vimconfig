@@ -68,8 +68,10 @@ cp -r vim/templates ~/.vim/templates
 
 # Installing vim syntax files
 echo "> installing vim syntax files..."
+mkdir -p ~/.vim/after/syntax
 mkdir -p ~/.vim/syntax
 ln -sf $ROOT/vim/syntax/* ~/.vim/syntax/
+ln -sf $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
