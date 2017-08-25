@@ -85,3 +85,7 @@ echo "> installing tmux theme..."
 mkdir -p ~/.tmux/themes
 cp tmux/cyan.tmuxtheme ~/.tmux/themes/
 
+# Install bash shortcuts
+line = 'PATH=$PATH:"'$ROOT/../bin/'"'
+grep -q -F $line foo.bar || echo $line >> foo.bar
+
