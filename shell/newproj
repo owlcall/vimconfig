@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+#
+# newproj.sh 
+# Copyright (c) 2017 owl
+#
+
+ROOT=$( cd "$( dirname "$0" )" && pwd )
+
+while [[ $# -gt 0 ]]
+do
+	key="$1"
+
+	case $key in
+		-d|--directory)
+		DIRECTORY="$2"
+		shift
+		;;
+
+		-n|--name)
+		NAME="$2"
+		shift
+		;;
+
+		-f|--force)
+		FORCE=true
+		;;
+
+		*)
+		if [ ! $NAME ]; then
+			NAME="$1"
+		else
+			echo error: unknown argument "$1"
+			exit -3
+		fi
+		;;
+	esac
+	shift
+done
+
+if [ ! $NAME ]; then
+	echo error: project name is empty
+	exit -1
+fi
+
+# Deploy path
+PROJDIR=$DIRECTORY
+if [ ! $PROJDIR ]; then
+	PROJDIR=$NAME
+fi
+
+if [ $PROJDIR ] && [ $PROJDIR != "." ]; then
+	mkdir "$PROJDIR" > /dev/null 2>&1
+	if [ ! $? -eq 0 ] && [ ! $FORCE ]; then
+		echo error: directory "$PROJDIR" already exists. Use -f or --force flag to overwrite it
+		exit -2
+	else
+		echo creating directory "$PROJDIR"
+	fi
+fi
+
+echo Project: $NAME
+echo Directory: $DIRECTORY
+
+cp -r $ROOT/dev/* $DIRECTORY
+
