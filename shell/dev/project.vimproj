@@ -1,0 +1,10 @@
+
+let g:dev_build_dir = 'placeholder_project'
+let g:dev_program = 'bin/placeholder_project'
+
+set path+=inc
+set path+=src
+
+set path+=lib
+set path+=bin
+
