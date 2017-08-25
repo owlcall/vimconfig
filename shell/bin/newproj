@@ -53,16 +53,11 @@ if [ $PROJDIR ] && [ $PROJDIR != "." ]; then
 	if [ ! $? -eq 0 ] && [ ! $FORCE ]; then
 		echo error: directory "$PROJDIR" already exists. Use -f or --force flag to overwrite it
 		exit -2
-	else
-		echo creating directory "$PROJDIR"
 	fi
 fi
 
-echo Project: $NAME
-echo Directory: $DIRECTORY
-
-cp -r $ROOT/../dev/* $DIRECTORY/
+cp -r $ROOT/../dev/* $PROJDIR/
 SED_EXPR='s/placeholder_project/'$NAME'/g'
-sed -i -e $SED_EXPR $DIRECTORY/src/CMakeLists.txt
-sed -i -e $SED_EXPR $DIRECTORY/project.vimproj
+sed -i '' $SED_EXPR $PROJDIR/src/CMakeLists.txt
+sed -i '' $SED_EXPR $PROJDIR/project.vimproj
 
