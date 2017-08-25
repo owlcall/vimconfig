@@ -61,5 +61,8 @@ fi
 echo Project: $NAME
 echo Directory: $DIRECTORY
 
-cp -r $ROOT/dev/* $DIRECTORY
+cp -r $ROOT/dev/* $DIRECTORY/
+SED_EXPR='s/placeholder_project/'$NAME'/g'
+sed -i -e $SED_EXPR $DIRECTORY/src/CMakeLists.txt
+sed -i -e $SED_EXPR $DIRECTORY/project.vimproj
 
