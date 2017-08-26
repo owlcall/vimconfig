@@ -32,10 +32,12 @@ Plugin 'scrooloose/nerdcommenter'
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 ""=========== Themes
-Plugin 'w0ng/vim-hybrid'
+"Plugin 'w0ng/vim-hybrid'
+"Plugin 'nanotech/jellybeans.vim'
+Plugin 'noah/vim256-color'
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -147,7 +149,9 @@ set nojoinspaces	" don't autoinsert two spaces after '.', '?', '!' for join comm
 
 "=========================== Theme settings
 set background=dark
-colorscheme hybrid
+"colorscheme jellybeans
+colorscheme slate
+
 
 "=========================== Fixes
 "=== Fix the backspace key from getting stuck on one line
