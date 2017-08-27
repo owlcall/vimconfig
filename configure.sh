@@ -63,22 +63,21 @@ fi
 
 # Install vim templates
 echo "> installing vim templates..."
-mv ~/.vim/templates ~/.vim/templates.backup
-cp -r vim/templates ~/.vim/templates
+ln -shF $ROOT/vim/templates ~/.vim/templates
 
 # Installing vim syntax files
 echo "> installing vim syntax files..."
-mkdir -p ~/.vim/after/syntax
 mkdir -p ~/.vim/syntax
-ln -sf $ROOT/vim/syntax/* ~/.vim/syntax/
-ln -sf $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
+mkdir -p ~/.vim/after/syntax
+ln -shF $ROOT/vim/syntax/* ~/.vim/syntax/
+ln -shF $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
 cp vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
-echo "> installing syntax theme..."
-ln -sf $ROOT/vim/theme_hybrid.vim ~/.vim/bundle/vim-hybrid/colors/hybrid.vim
+#echo "> installing syntax theme..."
+#ln -sf $ROOT/vim/theme_hybrid.vim ~/.vim/bundle/vim-hybrid/colors/hybrid.vim
 
 # Install tmux theme
 echo "> installing tmux theme..."
@@ -86,7 +85,12 @@ mkdir -p ~/.tmux/themes
 cp tmux/cyan.tmuxtheme ~/.tmux/themes/
 
 # Install bash shortcuts
-line='PATH=$PATH:"'$ROOT/shell/bin/'"'
-grep -q -F $line ~/.bashrc || echo $line >> ~/.bashrc
+echo "> installing bash modifications"
+function update {
+	grep -q "$1" ~/.bashrc || echo "$1" >> ~/.bashrc
+}
+update PATH='$PATH:$ROOT/shell/bin/'
+update "alias tmux='$(which tmux) -2'"
+
 source ~/.bashrc
 
