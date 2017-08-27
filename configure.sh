@@ -64,18 +64,18 @@ fi
 # Install vim theme
 echo "> installing vim theme..."
 mkdir -p ~/.vim/colors
-ln -shF $ROOT/vim/apprentice.vim ~/.vim/colors/apprentice.vim
+ln -sf $ROOT/vim/apprentice.vim ~/.vim/colors/apprentice.vim
 
 # Install vim templates
 echo "> installing vim templates..."
-ln -shF $ROOT/vim/templates ~/.vim/templates
+ln -sf $ROOT/vim/templates ~/.vim/templates
 
 # Installing vim syntax files
 echo "> installing vim syntax files..."
 mkdir -p ~/.vim/syntax
 mkdir -p ~/.vim/after/syntax
-ln -shF $ROOT/vim/syntax/* ~/.vim/syntax/
-ln -shF $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
+ln -sf $ROOT/vim/syntax/* ~/.vim/syntax/
+ln -sf $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
