@@ -61,6 +61,11 @@ else
 	exit 1;
 fi
 
+# Install vim theme
+echo "> installing vim theme..."
+mkdir -p ~/.vim/colors
+ln -shF $ROOT/vim/apprentice.vim ~/.vim/colors/apprentice.vim
+
 # Install vim templates
 echo "> installing vim templates..."
 ln -shF $ROOT/vim/templates ~/.vim/templates

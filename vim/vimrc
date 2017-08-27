@@ -9,7 +9,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "=========== GIT plugins
-"Plugin 'tpope/vim-fugitive'				" Displays git branch in airline
 Plugin 'airblade/vim-gitgutter'			" Displays git diff information in line gutters
 
 "=========== Indexing/Tagging plugins
@@ -17,13 +16,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ludovicchabant/vim-gutentags'
 
 "=========== Autocomplete plugins
-"Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 
 "=========== Navigation plugins
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'terryma/vim-smooth-scroll'
 
 "=========== General/Miscellaneous plugins
 Plugin 'lastsupertim/vim-dispatch'
@@ -32,16 +29,13 @@ Plugin 'scrooloose/nerdcommenter'
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-
-""=========== Themes
-"Plugin 'w0ng/vim-hybrid'
-"Plugin 'nanotech/jellybeans.vim'
-Plugin 'noah/vim256-color'
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
 
+"=========================== Theme settings
+set background=dark
+colorscheme apprentice
 
 "=========================== Vim behavior settings
 if has ('autocmd')
@@ -146,11 +140,6 @@ set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
 set nojoinspaces	" don't autoinsert two spaces after '.', '?', '!' for join command
-
-"=========================== Theme settings
-set background=dark
-"colorscheme jellybeans
-colorscheme slate
 
 
 "=========================== Fixes
