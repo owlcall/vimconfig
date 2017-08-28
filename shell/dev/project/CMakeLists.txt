@@ -12,4 +12,4 @@ include_directories(${CMAKE_SOURCE_DIR}/inc)
 link_directories(${CMAKE_SOURCE_DIR}/lib)
 
 # Projects
-add_subdirectory(src)
+#add_subdirectory(src)
