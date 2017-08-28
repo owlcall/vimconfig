@@ -71,7 +71,6 @@ if __name__ == '__main__':
 	args = docopt(__doc__, version='0.1')
 	# print(args)
 
-	global gPathDev
 	projectExists = False
 	projectName = None
 
