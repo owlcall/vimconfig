@@ -23,6 +23,7 @@ cd ..
 curl -L https://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz > ncurses.tar.gz
 tar vxf ncurses*
 cd ncurses*
+export CPPFLAGS="-P"
 ./configure --prefix=/usr/local
 make -j 4
 make install
