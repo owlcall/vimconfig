@@ -20,6 +20,8 @@ from docopt import docopt
 import os
 import mmap
 
+gPath = os.path.dirname(os.path.realpath(__file__))
+gPathDev = os.path.join(gPath, "../dev")
 
 def mkdir(name):
 	if not os.path.exists(name):
@@ -69,6 +71,7 @@ if __name__ == '__main__':
 	args = docopt(__doc__, version='0.1')
 	# print(args)
 
+	global gPathDev
 	projectExists = False
 	projectName = None
 
@@ -84,7 +87,7 @@ if __name__ == '__main__':
 			exit(1)
 
 		mkdir(args["<name>"])
-		copy("../dev/project", args["<name>"])
+		copy(os.path.join(gPathDev,"project"), args["<name>"])
 		projectExists = True
 		projectName = args["<name>"]
 
@@ -111,8 +114,8 @@ if __name__ == '__main__':
 
 		for sp in ["static","dynamic","binary"]:
 			if not args[sp]: continue
-			baseInc = os.path.join("../dev/", sp, "inc")
-			baseSrc = os.path.join("../dev/", sp, "src")
+			baseInc = os.path.join(gPathDev, sp, "inc")
+			baseSrc = os.path.join(gPathDev, sp, "src")
 			if os.path.isfile(os.path.join(baseInc, "dummy_header.h")):
 				headerSrc = os.path.join(baseInc, "dummy_header.h")
 				headerDst = os.path.join(subInc, subName+".h")
