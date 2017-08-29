@@ -16,9 +16,8 @@ do
 		;;
 
 		*)
-			echo error: unknown argument "$1"
-			exit -3
-		fi
+		echo error: unknown argument "$1"
+		exit -3
 		;;
 	esac
 	shift
