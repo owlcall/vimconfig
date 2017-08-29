@@ -11,7 +11,7 @@ tar vxf ncurses*
 rm ncurses.tar.gz
 cd ncurses*
 export CPPFLAGS="-P"
-./configure --prefix=/usr/local
+./configure
 make -j 4
 cd ..
 
