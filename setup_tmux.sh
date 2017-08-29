@@ -32,14 +32,11 @@ do
 	shift
 done
 
-rm -rf temp_tmux
-mkdir temp_tmux
-cd temp_tmux
-
 # ----- tmux -----
 # Latest release: https://github.com/tmux/tmux/releases
 curl -L https://github.com/tmux/tmux/releases/download/2.5/tmux-2.5.tar.gz > tmux.tar.gz
 tar vxf tmux*
+rm tmux.tar.gz
 cd tmux*
 ./configure --prefix=/usr/local
 make -j 4

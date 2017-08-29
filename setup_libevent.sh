@@ -23,16 +23,13 @@ do
 	shift
 done
 
-rm -rf temp_tmux
-mkdir temp_tmux
-cd temp_tmux
-
 # ----- libevent -----
 # Latest release: https://github.com/libevent/libevent/releases/latest
 curl -L https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz > libevent.tar.gz
 tar vxf libevent*
-rm libevent*.tar.gz
+rm libevent.tar.gz
 cd libevent*
 ./configure $ARCH --prefix=/usr/local
 make -j 4
 cd ..
+
