@@ -4,30 +4,37 @@
 # Copyright (c) 2017 owl
 #
 
+ROOT=$( cd "$( dirname "$0" )" && pwd )
+
+while [[ $# -gt 0 ]]
+do
+	key="$1"
+
+	case $key in
+		#-d|--directory)
+		#DIRECTORY="$2"
+		#shift
+		#;;
+
+		-64)
+		FORCE=true
+		;;
+
+		*)
+		if [ ! $NAME ]; then
+			NAME="$1"
+		else
+			echo error: unknown argument "$1"
+			exit -3
+		fi
+		;;
+	esac
+	shift
+done
+
 rm -rf temp_tmux
 mkdir temp_tmux
 cd temp_tmux
-
-# ----- libevent -----
-# Latest release: https://github.com/libevent/libevent/releases/latest
-curl -L https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz > libevent.tar.gz
-tar vxf libevent*
-cd libevent*
-./configure --prefix=/usr/local
-make -j 4
-make install
-cd ..
-
-# ----- ncurses -----
-# Latest release: https://ftp.gnu.org/gnu/ncurses/
-curl -L https://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz > ncurses.tar.gz
-tar vxf ncurses*
-cd ncurses*
-export CPPFLAGS="-P"
-./configure --prefix=/usr/local
-make -j 4
-make install
-cd ..
 
 # ----- tmux -----
 # Latest release: https://github.com/tmux/tmux/releases
@@ -36,6 +43,5 @@ tar vxf tmux*
 cd tmux*
 ./configure --prefix=/usr/local
 make -j 4
-make install
 cd ..
 
