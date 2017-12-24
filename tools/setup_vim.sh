@@ -8,7 +8,7 @@
 # Latest release: https://github.com/vim/vim.git
 git clone https://github.com/vim/vim.git vim-8
 cd vim-8
-./configure --prefix=/usr/local/ --with-features=huge --enable-pythoninterp
+./configure --prefix=/usr/local/ --with-features=huge --enable-pythoninterp=yes --enable-python3interp=yes
 make -j 4
 cd ..
 
