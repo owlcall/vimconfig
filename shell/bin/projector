@@ -89,6 +89,7 @@ if __name__ == '__main__':
 
 		mkdir(args["<name>"])
 		copy(os.path.join(gPathDev,"project"), args["<name>"])
+		copy(os.path.join(gPathDev,"project.vimproj"), args["<name>"])
 		projectExists = True
 		projectName = args["<name>"]
 
@@ -132,5 +133,8 @@ if __name__ == '__main__':
 			replace_text("dummy_"+sp, subName, cmakeDst)
 
 			append_text("add_subdirectory(src/"+subName+")\n", projCMake)
+
+			if(sp == "binary"):
+				replace_text("placeholder_project", subName, os.path.join(projectName,"project.vimproj"))
 
 

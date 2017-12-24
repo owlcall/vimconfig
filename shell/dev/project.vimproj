@@ -1,5 +1,5 @@
 
-let g:dev_build_dir = 'placeholder_project'
+let g:dev_build_dir = 'build'
 let g:dev_program = 'bin/placeholder_project'
 
 set path+=inc
