@@ -40,12 +40,14 @@ fi
 
 # Ensure ctags exists
 if ! hash ctags 2>/dev/null; then
-	echo "> ctags is not installed; remember to install ctags"
+	>&2 echo "> ctags is not installed; remember to install ctags"
+else
+	echo "> ctags is installed"
 fi
 
 # Install Powerline fonts for vim status embellishment
 ./powerline/fonts/install.sh D2Coding
-echo "> d2coding powerline font installed. Please change fonts in terminal"
+echo "> cousine powerline font installed. Please change fonts in terminal"
 
 # Ensure vim exists
 if hash vim 2>/dev/null; then
@@ -91,8 +93,46 @@ echo "> installing bash modifications"
 function update {
 	grep -q "$1" ~/.bashrc || echo "$1" >> ~/.bashrc
 }
-update PATH='$PATH:$ROOT/shell/bin/'
+update PATH='$PATH'":$ROOT/shell/bin/"
+update "export CLICOLOR=1"
+update "export LSCOLORS=ExFxBxDxCxegedabagacad"
+update "alias gs='git status'"
 update "alias tmux='$(which tmux) -2'"
+update "alias ls='ls -lAhG'"
+
+# Update git settings
+echo "> installing git modifications"
+git config --global diff.tool vimdiff
+git config --global merge.tool vimdiff
+git config --global difftool.prompt false
+git config --global core.editor vim
+git config --global color.ui true
+git config --global alias.dt difftool
+
+# Configure git diff colors
+git config --global color.diff.meta "cyan bold"
+git config --global color.diff.frag "magenta bold"
+git config --global color.diff.old "red"
+git config --global color.diff.new "green"
+
+# Configure git status colors
+git config --global color.status.added "green"
+git config --global color.status.changed "red"
+git config --global color.status.untracked "yellow"
+
+echo "> current name: "`eval git config --global user.name`
+read -p '> enter git name (leave blank to skip): ' git_name
+if [[ ! -z $git_name ]]; then
+	echo 'setting name "'$git_name'"'
+	git config --global user.name "$git_name"
+fi
+
+echo "> current email: "`eval git config --global user.email`
+read -p '> enter git email (leave blank to skip): ' git_email
+if [[ ! -z $git_email ]]; then
+	echo 'setting email "'$git_email'"'
+	git config --global user.email "$git_email"
+fi
 
 source ~/.bashrc
 
