@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 #
-# project.py 
-# Copyright (c) 2017 owl
+# projector 
+# Copyright (c) 2017 Tim Vasko
 #
 # Create a new CMake project, or modify it by adding libraries/executables
 #
 
-"""project.py is a tool used for creating new CMake C++ projects, libraries, and binaries.
+"""projector is a tool used for creating new CMake C++ projects, libraries, and binaries.
+Copyright (c) 2017 Tim Vasko
 
 Usage:
-  project.py create <name>
-  project.py <project> add (static|dynamic|binary) <subproject>
-  project.py -h | --help
+  projector create <name>
+  projector <project> add (static|dynamic|binary) <subproject>
+  projector -h | --help
 
 Options:
-  -h --help     Show this screen.
+  -h --help     Show this text
+  -v --version  Show version of this script
 """
 from docopt import docopt
 import os
@@ -68,7 +70,7 @@ def project_exists(path):
 
 
 if __name__ == '__main__':
-	args = docopt(__doc__, version='0.1')
+	args = docopt(__doc__, version='0.2')
 	# print(args)
 
 	projectExists = False
