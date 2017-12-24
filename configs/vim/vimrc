@@ -17,7 +17,6 @@ Plugin 'ludovicchabant/vim-gutentags'
 
 "=========== Autocomplete plugins
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'davidhalter/jedi-vim'
 
 "=========== Navigation plugins
 Plugin 'christoomey/vim-tmux-navigator'
@@ -30,8 +29,6 @@ Plugin 'scrooloose/nerdcommenter'
 "=========== Display plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
-"Plugin 'lastsupertim/vimsuperdebug'
 
 call vundle#end()            " required
 "filetype plugin indent on    " required
@@ -195,8 +192,6 @@ let g:tagbar_compact = 1
 let g:dev_build_dir = 'build'
 let g:dev_program = '<g:dev_program>'
 
-let g:jedi#use_splits_not_buffers = "left"
-
 
 "=========================== Quickfix Toggle
 function! GetBufferList()
@@ -297,12 +292,12 @@ nnoremap <silent> <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
 nnoremap <silent> <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
-nnoremap <silent> <Leader>b :execute 'Dispatch pwd && make -j 1 -C' . g:dev_build_dir <CR>
+nnoremap <silent> <Leader>b :execute 'Dispatch pwd && make -j 4 -C' . g:dev_build_dir <CR>
 nnoremap <silent> <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
 if filereadable("project.vimproj") | source ./project.vimproj | endif
 
-"nnoremap <C-m> : echo "TEST"<CR>
+" Add JSON auto formatter
 nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
 
 " Add support for running custom command whenever file changes
