@@ -10,6 +10,7 @@ curl -L https://github.com/libevent/libevent/releases/download/release-2.1.8-sta
 tar vxf libevent*
 rm libevent.tar.gz
 cd libevent*
+export CPPFLAGS="-I/opt/local/include"
 ./configure
 make -j 4
 cd ..

@@ -6,7 +6,7 @@ ROOT=$( cd "$( dirname "$0" )" && pwd )
 if [ ! -f ~/.vimrc ]; then
     echo "> .vimrc file not found"
 	echo "> writing custom .vimrc as a symlink"
-	ln -sf $ROOT/vim/vimrc ~/.vimrc
+	ln -sf $ROOT/configs/vim/vimrc ~/.vimrc
 else
 	if [ ! -L ~/.vimrc ]; then
 		echo "> .vimrc exists; backing up to ~/.vimrc_backup"
@@ -17,14 +17,14 @@ else
 		echo "> .vimrc is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .vimrc as a symlink"
-	ln -sf $ROOT/vim/vimrc ~/.vimrc
+	ln -sf $ROOT/configs/vim/vimrc ~/.vimrc
 fi
 
 # Setup tmux config file
 if [ ! -f ~/.tmux.conf ]; then
     echo "> .tmux.conf file not found"
 	echo "> writing custom .tmux.conf as a symlink"
-	ln -sf $ROOT/tmux/tmux.conf ~/.tmux.conf 
+	ln -sf $ROOT/configs/tmux/tmux.conf ~/.tmux.conf 
 else
 	if [ ! -L ~/.tmux.conf ]; then
 		echo "> .tmux.conf exists; backing up to ~/.tmux.conf"
@@ -35,7 +35,7 @@ else
 		echo "> .tmux.conf is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .tmux.conf as a symlink"
-	ln -sf $ROOT/tmux/tmux.conf ~/.tmux.conf
+	ln -sf $ROOT/configs/tmux/tmux.conf ~/.tmux.conf
 fi
 
 # Ensure ctags exists
@@ -46,7 +46,7 @@ else
 fi
 
 # Install Powerline fonts for vim status embellishment
-./powerline/fonts/install.sh D2Coding
+./shell/configs/powerline/fonts/install.sh D2Coding
 echo "> cousine powerline font installed. Please change fonts in terminal"
 
 # Ensure vim exists
@@ -66,27 +66,37 @@ fi
 # Install vim theme
 echo "> installing vim theme..."
 mkdir -p ~/.vim/colors
-ln -sf $ROOT/vim/apprentice.vim ~/.vim/colors/apprentice.vim
+ln -sf $ROOT/configs/vim/apprentice.vim ~/.vim/colors/apprentice.vim
 
 # Install vim templates
 echo "> installing vim templates..."
-ln -sf $ROOT/vim/templates ~/.vim/templates
+if [ -L ~/.tmux.conf ]; then
+	SYMDIR="$(readlink ~/.vim/templates)"
+	if [ "$SYMDIR" == "$ROOT/configs/vim/templates" ]; then
+		echo "> vim templates are already configured correctly"
+	else
+		mv ~/.vim/templates ~/.vim/templates.backup
+		ln -sf $ROOT/configs/vim/templates ~/.vim/templates
+		echo "> backed up vim templates into ~/.vim/backup_templates"
+		echo "> configured templates symlink"
+	fi
+fi
 
 # Installing vim syntax files
 echo "> installing vim syntax files..."
 mkdir -p ~/.vim/syntax
 mkdir -p ~/.vim/after/syntax
-ln -sf $ROOT/vim/syntax/* ~/.vim/syntax/
-ln -sf $ROOT/vim/after/syntax/* ~/.vim/after/syntax/
+ln -sf $ROOT/configs/vim/syntax/* ~/.vim/syntax/
+ln -sf $ROOT/configs/vim/after/syntax/* ~/.vim/after/syntax/
 
 # Install airline theme (green normal, red insert, purple replace, blue visual)
 echo "> installing airline theme..."
-ln -sf $ROOT/vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
+ln -sf $ROOT/configs/vim/airline_bubblegum.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
 
 # Install tmux theme
 echo "> installing tmux theme..."
 mkdir -p ~/.tmux/themes
-ln -sf $ROOT/tmux/cyan.tmuxtheme ~/.tmux/themes/
+ln -sf $ROOT/configs/tmux/cyan.tmuxtheme ~/.tmux/themes/
 
 # Install bash shortcuts
 echo "> installing bash modifications"
