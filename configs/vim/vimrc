@@ -291,11 +291,10 @@ nnoremap <silent> <Leader>w :w !diff % -<CR>|	" Show differences before writing 
 nnoremap <silent> <Leader><S-w> :w<CR>			" Save file
 
 "=== Developer/build bindings
+if filereadable("project.vimproj") | source ./project.vimproj | endif
 nnoremap <silent> <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
 nnoremap <silent> <Leader>b :execute 'Dispatch pwd && make -j 4 -C' . g:dev_build_dir <CR>
 nnoremap <silent> <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
-
-if filereadable("project.vimproj") | source ./project.vimproj | endif
 
 " Add JSON auto formatter
 nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
