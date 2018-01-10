@@ -5,6 +5,7 @@
 #
 
 ROOT=$( cd "$( dirname "$0" )" && pwd )
+cd $ROOT
 
 # ----- tmux -----
 # Latest release: https://github.com/vim/vim.git
@@ -27,7 +28,7 @@ case "$OSTYPE" in
 	*)        echo "Unknown OS: $OSTYPE" ;;
 esac
 
-CONFIG=$CONFIG" --prefix=$(realpath $ROOT/../shell/)/"
+CONFIG=$CONFIG" --prefix=$(realpath $ROOT/../)/"
 CONFIG=$CONFIG" --with-features=huge"
 CONFIG=$CONFIG" --enable-pythoninterp=yes"
 CONFIG=$CONFIG" --enable-python3interp=yes"

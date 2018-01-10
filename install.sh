@@ -3,22 +3,22 @@
 ROOT=$( cd "$( dirname "$0" )" && pwd )
 
 if ! hash realpath 2>/dev/null; then
-	./tools/setup_realpath.sh
+	./shell/tools/setup_realpath.sh
 	echo "> installed realpath"
 fi
 
 if ! hash tmux 2>/dev/null; then
 	>&2 echo "> tmux not installed; installing..."
-	./tools/setup_libevent.sh
-	./tools/setup_ncurses.sh
-	./tools/setup_tmux.sh
+	./shell/tools/setup_libevent.sh
+	./shell/tools/setup_ncurses.sh
+	./shell/tools/setup_tmux.sh
 else
 	echo "> detected tmux $(tmux -V | sed "s/^.* \([0-9]*\)/\1/")"
 fi
 
 if ! hash vim 2>/dev/null; then
 	>&2 echo "> vim not installed"
-	./tools/setup_vim.sh
+	./shell/tools/setup_vim.sh
 else
 	echo "> detected vim $(vim --version | sed -n "s/^.*\([0-9]\.[0-9]\).*/\1/p")"
 fi

@@ -5,6 +5,7 @@
 #
 
 ROOT=$( cd "$( dirname "$0" )" && pwd )
+cd $ROOT
 
 cat <<EOT >> $ROOT/realpath.c
 // realpath.c: display the absolute path to a file or directory.
@@ -40,7 +41,7 @@ void usage(void)
 }
 EOT
 
-mkdir -p $ROOT/../shell/bin
-gcc -o $ROOT/../shell/bin/realpath $ROOT/realpath.c
+mkdir -p $ROOT/../bin
+gcc -o $ROOT/../bin/realpath $ROOT/realpath.c
 rm $ROOT/realpath.c
 

@@ -18,7 +18,7 @@ if [[ "$VER_IS_GOOD" != "1" ]]; then
 	tar vxf tmux.tar.gz
 	rm tmux.tar.gz
 	cd tmux-2.5
-	./configure --prefix="$ROOT/../shell/" CFLAGS="-I$ROOT/../shell/include -I$ROOT/../shell/include/ncurses" LDFLAGS="-L$ROOT/../shell/lib/ -Wl,-rpath,$ROOT/../shell/lib"
+	./configure --prefix="$ROOT/../" CFLAGS="-I$ROOT/../include -I$ROOT/../include/ncurses" LDFLAGS="-L$ROOT/../lib/ -Wl,-rpath,$ROOT/../lib"
 	make -j 4
 	make install
 	cd ..
@@ -28,11 +28,12 @@ else
 fi
 
 if ! [ -d tmux-MacOSX* ] ; then
+	cd $ROOT
 	git clone https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
 	cd tmux-MacOSX-pasteboard
 	https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
 	make -j 2
-	cp reattach-to-user-namespace ../../shell/bin/
+	cp reattach-to-user-namespace ../../bin/
 	cd ..
 else
 	echo "Detected tmux MacOSX pasteboard implementation"
