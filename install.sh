@@ -2,37 +2,60 @@
 
 ROOT=$( cd "$( dirname "$0" )" && pwd )
 
+if ! hash realpath 2>/dev/null; then
+	./tools/setup_realpath.sh
+	echo "> installed realpath"
+fi
+
+if ! hash tmux 2>/dev/null; then
+	>&2 echo "> tmux not installed; installing..."
+	./tools/setup_libevent.sh
+	./tools/setup_ncurses.sh
+	./tools/setup_tmux.sh
+else
+	echo "> detected tmux $(tmux -V | sed "s/^.* \([0-9]*\)/\1/")"
+fi
+
+if ! hash vim 2>/dev/null; then
+	>&2 echo "> vim not installed"
+	./tools/setup_vim.sh
+else
+	echo "> detected vim $(vim --version | sed -n "s/^.*\([0-9]\.[0-9]\).*/\1/p")"
+fi
+
 # Setup vimrc file
+echo "> configuring vim..."
 if [ ! -f ~/.vimrc ]; then
-    echo "> .vimrc file not found"
+    echo "> vim config .vimrc file not found"
 	echo "> writing custom .vimrc as a symlink"
 	ln -sf $ROOT/configs/vim/vimrc ~/.vimrc
 else
 	if [ ! -L ~/.vimrc ]; then
-		echo "> .vimrc exists; backing up to ~/.vimrc_backup"
+		echo "> vim config .vimrc exists; backing up to ~/.vimrc_backup"
 		mv ~/.vimrc ~/.vimrc_backup
 		rm ~/.vimrc
 	else
 		SYMDIR="$(readlink ~/.vimrc)"
-		echo "> .vimrc is a symlink; pointing to "$SYMDIR
+		echo "> vim config .vimrc is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .vimrc as a symlink"
 	ln -sf $ROOT/configs/vim/vimrc ~/.vimrc
 fi
 
 # Setup tmux config file
+echo "> configuring tmux..."
 if [ ! -f ~/.tmux.conf ]; then
-    echo "> .tmux.conf file not found"
+    echo "> tmux config \".tmux.conf\" file not found"
 	echo "> writing custom .tmux.conf as a symlink"
 	ln -sf $ROOT/configs/tmux/tmux.conf ~/.tmux.conf 
 else
 	if [ ! -L ~/.tmux.conf ]; then
-		echo "> .tmux.conf exists; backing up to ~/.tmux.conf"
+		echo "> tmux config \".tmux.conf\" exists; backing up to ~/.tmux.conf"
 		mv ~/.tmux.conf ~/.tmux.conf.backup
 		rm ~/.tmux.conf
 	else
 		SYMDIR="$(readlink ~/.tmux.conf)"
-		echo "> .tmux.conf is a symlink; pointing to "$SYMDIR
+		echo "> tmux config \".tmux.conf\" is a symlink; pointing to "$SYMDIR
 	fi
 	echo "> writing custom .tmux.conf as a symlink"
 	ln -sf $ROOT/configs/tmux/tmux.conf ~/.tmux.conf
@@ -45,8 +68,16 @@ else
 	echo "> ctags is installed"
 fi
 
+# Ensure cscope exists
+if ! hash cscope 2>/dev/null; then
+	>&2 echo "> cscope is not installed; remember to install cscope"
+else
+	echo "> cscope is installed"
+fi
+
 # Install Powerline fonts for vim status embellishment
-./shell/configs/powerline/fonts/install.sh D2Coding
+echo "> installing powerline fonts..."
+./shell/configs/powerline/fonts/install.sh cousine 1> /dev/null
 echo "> cousine powerline font installed. Please change fonts in terminal"
 
 # Ensure vim exists
@@ -103,7 +134,7 @@ echo "> installing bash modifications"
 function update {
 	grep -q "$1" ~/.bashrc || echo "$1" >> ~/.bashrc
 }
-update PATH='$PATH'":$ROOT/shell/bin/"
+update PATH="$ROOT/shell/bin/:"'$PATH'
 update "export CLICOLOR=1"
 update "export LSCOLORS=ExFxBxDxCxegedabagacad"
 update "alias gs='git status'"
