@@ -89,6 +89,7 @@ set secure
 set antialias		" Enable antialiasing on Mac OS X
 set encoding=utf-8	" Default utf-8 encoding
 set history=1024	" Increase command history
+set clipboard=unnamed	" Allow us to use system clipboard"
 
 set shortmess+=O	" file-read message overwrites previous
 set shortmess+=o	" overwrite file-written messages
@@ -139,12 +140,18 @@ set cursorline		" Highlight cursor line
 set laststatus=2	" Show statusbar all the time
 set scrolloff=1		" Scroll offset of 1 line
 set showmatch		" Show matching bracket
+set wildmenu		" Show advanced autocompletion in command mode
 set nojoinspaces	" don't autoinsert two spaces after '.', '?', '!' for join command
 
 
 "=========================== Fixes
 "=== Fix the backspace key from getting stuck on one line
 set backspace=indent,eol,start
+
+"=== Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
+endif
 
 "=== Fix key bindings if running within tmux on mac
 if &term =~ '^screen'
@@ -155,6 +162,9 @@ if &term =~ '^screen'
 	execute "set <xLeft>=\e[1;*D"
 endif
 
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
 
 "=========================== Airline plugin customization
 let g:airline_theme = "bubblegum"
