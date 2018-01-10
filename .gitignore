@@ -1,13 +1,16 @@
 **.swp
 tags
 
+configs/vim/templates/templates
+
 shell/bin/**
 shell/share/**
 shell/include/**
 shell/lib/**
+shell/man/**
 
-configs/vim/templates/templates
-tools/libevent*
-tools/ncurses*
-tools/vim*
-tools/tmux*
+shell/tools/libevent*
+shell/tools/ncurses*
+shell/tools/vim*
+shell/tools/tmux*
+
