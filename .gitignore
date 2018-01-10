@@ -1,2 +1,7 @@
 **.swp
 tags
+
+shell/bin/**
+shell/share/**
+shell/include/**
+shell/lib/**
