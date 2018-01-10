@@ -5,3 +5,9 @@ shell/bin/**
 shell/share/**
 shell/include/**
 shell/lib/**
+
+configs/vim/templates/templates
+tools/libevent*
+tools/ncurses*
+tools/vim*
+tools/tmux*
