@@ -4,34 +4,17 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-"=========== Vundle plugin (must be first)
-Plugin 'gmarik/Vundle.vim'
-
-"=========== GIT plugins
-Plugin 'airblade/vim-gitgutter'			" Displays git diff information in line gutters
-
-"=========== Indexing/Tagging plugins
-Plugin 'majutsushi/tagbar'
-Plugin 'ludovicchabant/vim-gutentags'
-
-"=========== Autocomplete plugins
-Plugin 'jiangmiao/auto-pairs'
-
-"=========== Navigation plugins
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'kien/ctrlp.vim'
-
-"=========== General/Miscellaneous plugins
-Plugin 'lastsupertim/vim-dispatch'
-Plugin 'scrooloose/nerdcommenter'
-
-"=========== Display plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
+	Plugin 'gmarik/Vundle.vim'
+	Plugin 'airblade/vim-gitgutter'
+	Plugin 'majutsushi/tagbar'
+	Plugin 'ludovicchabant/vim-gutentags'
+	Plugin 'rhysd/vim-clang-format'
+	Plugin 'christoomey/vim-tmux-navigator'
+	Plugin 'kien/ctrlp.vim'
+	Plugin 'scrooloose/nerdcommenter'
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
-"filetype plugin indent on    " required
 
 "=========================== Theme settings
 set background=dark
@@ -50,9 +33,9 @@ if has ('autocmd')
 		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zz
 	augroup END
 
-	augroup DetectFiletype	" Assign syntax coloring for custom file extensions
-		autocmd BufRead,BufNewFile *.vimproj set filetype=vim
-	augroup END
+	"augroup DetectFiletype	" Assign syntax coloring for custom file extensions
+		"autocmd BufRead,BufNewFile *.vimproj set filetype=vim
+	"augroup END
 
 	function! LoadTemplate()
 		silent! %substitute#\[vim \(.\{-\}\)\ vim\]#\=eval(submatch(1))#ge|%substitute#\[HERE\]##g
@@ -63,7 +46,6 @@ if has ('autocmd')
 		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | call LoadTemplate()
 		autocmd BufNewFile *.h,*.hpp 0r ~/.vim/templates/skeleton.h | call LoadTemplate()
 		autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py | call LoadTemplate()
-		autocmd BufNewFile *.vimproj 0r ~/.vim/templates/skeleton.vimproj | call LoadTemplate()
 	augroup END
 
 	" Enable file type detection.
@@ -259,10 +241,6 @@ setglobal errorformat^=%+Eclang:\ error:%.%#
 "=========================== Tagging configuration
 set tags=./tags,tags;		" Seach in current dir, current file's dir, or up dir until $HOME
 
-"=========================== Scroll Controls
-"noremap <silent> <c-u> 12<C-y>12k
-"noremap <silent> <c-d> 12<C-e>12j
-
 "=========================== Keyboard Bindings - Normal Mode
 "=== Split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -298,16 +276,6 @@ nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 "=== Editor bindings
 "nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <silent> <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
-nnoremap <silent> <Leader><S-w> :w<CR>			" Save file
 
-"=== Developer/build bindings
-if filereadable("project.vimproj") | source ./project.vimproj | endif
-nnoremap <silent> <Leader>c :execute 'Dispatch mkdir -p ' . g:dev_build_dir . ' && cd ' . g:dev_build_dir . ' && rm -rf * && cmake ..' <CR>
-nnoremap <silent> <Leader>b :execute 'Dispatch pwd && make -j 4 -C' . g:dev_build_dir <CR>
-nnoremap <silent> <Leader>r :execute 'Dispatch ./' . g:dev_program <CR>
 
-" Add JSON auto formatter
-nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
-
-" Add support for running custom command whenever file changes
-
+filetype plugin indent on
