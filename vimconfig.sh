@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 #
-# vimconfig.sh 
-# Copyright (c) 2018 owl
-#
 
 DIR=$( cd "$( dirname "$0" )" && pwd )
-OP=cp
+OP="ln -sf"
 FORCE=false
 
 while [[ $# -gt 0 ]]
@@ -14,21 +11,21 @@ do
 	case $key in
 		-c|--copy)
 			OP="cp -r"
-			shift # past argument
+			shift
 		;;
 
 		-l|--link)
 			OP="ln -sf"
-			shift # past argument
+			shift
 		;;
 
 		-f|--force)
 			FORCE=true
-			shift # past argument
+			shift
 		;;
 
-		*)    # unknown option
-		shift # past argument
+		*)
+			shift
 		;;
 	esac
 done
@@ -44,11 +41,9 @@ if [ -f ~/.vimrc && ! -L ~/.vimrc ]; then
 		echo "~/.vimrc_backup already exists; use -f or --force to overwrite" 1>&2
 		exit 1
 	fi
-
 	mv ~/.vimrc ~/.vimrc_backup
 	rm ~/.vimrc
 fi
-
 $OP "$DIR/configs/vim/vimrc" ~/.vimrc
 
 
@@ -56,7 +51,24 @@ $OP "$DIR/configs/vim/vimrc" ~/.vimrc
 mkdir -p ~/.vim/colors
 $OP "$DIR/configs/vim/apprentice.vim" ~/.vim/colors/apprentice.vim
 
-# Configure vim templates
-mkdir -p ~/.vim/templates
-$OP "$DIR/configs/vim/templates/skeleton.*" ~/.vim/templates/
+# Install plugins
+if [ ! -d ~/.vim/bundle ]; then mkdir -p ~/.vim/bundle;	fi
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
+fi
 
+# Configure vim airline theme
+$OP "$ROOT/configs/vim/airline_bubblegum.vim" ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/bubblegum.vim
+
+# Configure vim syntax coloring
+for d in [ "syntax", "after/syntax" ]; do
+	mkdir -p ~/.vim/$d
+	for i in [ "$DIR/configs/vim/$d/*" ]; do
+		if [ -f ~/.vim/$d/$i && ! $FORCE ]; then
+			echo "~/.vim/$d/$i already exists; use -f or --force to overwrite" 1>&2
+			exit 1
+		fi
+		$OP "$DIR/configs/vim/$d/*" ~/.vim/$d/
+	done
+done

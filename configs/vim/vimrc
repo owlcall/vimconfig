@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 	Plugin 'gmarik/Vundle.vim'
 	Plugin 'airblade/vim-gitgutter'
-	Plugin 'majutsushi/tagbar'
 	Plugin 'ludovicchabant/vim-gutentags'
 	Plugin 'rhysd/vim-clang-format'
 	Plugin 'christoomey/vim-tmux-navigator'
@@ -31,21 +30,6 @@ if has ('autocmd')
 	augroup RestoreCursor	" Restore cursor position when opening files
 		autocmd!
 		autocmd BufReadPost * call setpos(".", getpos("'\""))|normal zz
-	augroup END
-
-	"augroup DetectFiletype	" Assign syntax coloring for custom file extensions
-		"autocmd BufRead,BufNewFile *.vimproj set filetype=vim
-	"augroup END
-
-	function! LoadTemplate()
-		silent! %substitute#\[vim \(.\{-\}\)\ vim\]#\=eval(submatch(1))#ge|%substitute#\[HERE\]##g
-	endfunction
-	augroup templates
-		autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh | call LoadTemplate()
-		autocmd BufNewFile *.c 0r ~/.vim/templates/skeleton.c | call LoadTemplate()
-		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp | call LoadTemplate()
-		autocmd BufNewFile *.h,*.hpp 0r ~/.vim/templates/skeleton.h | call LoadTemplate()
-		autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py | call LoadTemplate()
 	augroup END
 
 	" Enable file type detection.
@@ -169,21 +153,10 @@ let g:airline_section_y = ''		" encoding/fileformat
 let g:airline_section_z = '%l : %v' " line : column indicator
 let g:airline_section_error   = ''	" errors notification
 let g:airline_section_warning = ''	" warnings notification
+let g:airline_powerline_fonts = 0	" disable powerline fonts
 
 " Ensure the vertical bars match the airline colors in the horizontal highlights
 hi VertSplit ctermbg=238 ctermfg=238
-
-"=== Custom fonts for airline status bar
-let g:airline_powerline_fonts = 0
-
-"=========================== Other customizations
-let g:tagbar_autofocus = 1
-let g:tagbar_compact = 1
-
-"=== Custom build parameters
-let g:dev_build_dir = 'build'
-let g:dev_program = '<g:dev_program>'
-
 
 "=========================== Quickfix Toggle
 function! GetBufferList()
@@ -210,31 +183,6 @@ function! ToggleList(bufname, pfx)
 	endif
 endfunction
 
-"=========================== Tagbar Toggle
-function! ToggleTagbar()
-	echo "Tagbar Toggling now..."
-	if !exists('t:tagbar_buf_name')
-		echo "Tagbar toggling for the first time in tab"
-		execute 'TagbarOpenAutoClose'
-		return
-	endif
-
-    let tagbarwinnr = bufwinnr(t:tagbar_buf_name)
-    if tagbarwinnr != -1
-		echo "Window exists "
-        if winnr() != tagbarwinnr
-			echo "closing tagbar"
-			execute 'TagbarToggle'
-		else
-			echo "opening tagbar"
-			execute 'TagbarToggle'
-        endif
-	else
-		echo "opening autoclose"
-		execute 'TagbarOpenAutoClose'
-    endif
-endfunction
-
 " Ensure quickfix remains open if there are linker errors in clang
 setglobal errorformat^=%+Eclang:\ error:%.%#
 
@@ -256,9 +204,9 @@ nnoremap <Right> <C-w>>
 
 "=== Navigation bindings
 nnoremap <silent> <Leader>q :bd\|bd #<CR>	" Destroy buffer
-nnoremap <silent> <Leader><S-Tab> : bp<CR>			" Previous buffer
-nnoremap <silent> <Leader><Tab> : bn<CR>				" Next buffer
-nnoremap <silent> <Leader>d :bp\|bd #<CR>			" Destroy buffer
+nnoremap <silent> <S-Tab> : bp<CR>	" Previous buffer
+nnoremap <silent> <Tab> : bn<CR>	" Next buffer
+nnoremap <silent> <Leader>d :bp\|bd #<CR>	" Destroy buffer
 
 "=== Quickfix navigation
 nnoremap <silent> <Leader>e :cn <CR>		" Open file/line for next error in quickfix window
@@ -267,10 +215,9 @@ nnoremap <silent> <Leader><S-e> :cp <CR>	" Open file/line for previous error in 
 "=== Display toggles
 "nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <leader>f :call ToggleList("Quickfix List", 'c')<CR>	" Toggle quickfix view
-nnoremap <silent> <Leader>t :call ToggleTagbar() <CR>					" Open tagbar, close after navigating tag
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>						" Clear highlighting
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>							" Clear highlighting
-nnoremap <silent> <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>			" Toggle line numbers
+nnoremap <silent> <C-n>	   :let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]<CR>	" Toggle line numbers
 nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 
 "=== Editor bindings
