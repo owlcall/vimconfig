@@ -7,12 +7,19 @@ call vundle#begin()
 	Plugin 'gmarik/Vundle.vim'
 	Plugin 'airblade/vim-gitgutter'
 	Plugin 'ludovicchabant/vim-gutentags'
-	Plugin 'rhysd/vim-clang-format'
+	"Plugin 'rhysd/vim-clang-format'
 	Plugin 'christoomey/vim-tmux-navigator'
 	Plugin 'kien/ctrlp.vim'
 	Plugin 'scrooloose/nerdcommenter'
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
+
+	Plugin 'Valloric/YouCompleteMe'
+
+	Plugin 'google/vim-searchindex'
+
+	Plugin 'SirVer/ultisnips'
+	Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 
 "=========================== Theme settings
@@ -132,6 +139,12 @@ endif
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
+
+
+" UltiSnips triggering
+let g:UltiSnipsExpandTrigger = '<C-l>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 "=========================== Airline plugin customization
 let g:airline_theme = "bubblegum"

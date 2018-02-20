@@ -64,29 +64,30 @@ if (has('gui_running'))  "Graphical Vim
 else                     "Console Vim
   if &t_Co == 256
     "Set color palette with 256 colors
-	let s:BROWN0  = '143'	" Done
-	let s:BROWN1  = '101'	" Done
-	let s:GREEN0  = '108'	" Done
-    let s:GREEN1  = '28'	" Done
-    let s:BLUE    = '67'	" Done
-	let s:YELLOW0 = '229'	" Done
-	let s:TEAL0   = '66'	" Done
-	let s:TEAL1   = '73'	" Done
-	let s:TEAL2   = '110'	" Done
-	let s:ORANGE0 = '167'	" Done
-	let s:ORANGE1 = '173'	" Done
-	let s:ORANGE2 = '208'	" Done
-	let s:LPURPLE = '103'	" Done
+	let s:BROWN0  = '143'	" 
+	let s:BROWN1  = '101'	" Filler between borders
+	let s:GREEN0  = '108'	" Insert mode backgroun
+    let s:GREEN1  = '28'	" Syntax: comments
+    let s:BLUE    = '67'	" Syntax: identifiers
+	let s:YELLOW0 = '229'	" Syntax: {}
+	let s:TEAL0   = '66'	" 
+	let s:TEAL1   = '73'	" Gutter: current line
+	let s:TEAL2   = '110'	" Syntax: functions
+	let s:ORANGE0 = '167'	" 
+	let s:ORANGE1 = '173'	" Syntax: macros
+	let s:ORANGE2 = '208'	" 
+	let s:LPURPLE = '103'	" Vimdiff
 	let s:PINK0   = '163'	" Done
-	let s:PINK1   = '131'	" Done
-    let s:GREY0   = '234'	" Done
-	let s:GREY1   = '235'	" Done
-	let s:GREY2   = '236'	" Done
-    let s:GREY3   = '238'	" Done
-    let s:GREY4   = '240'	" Done
-    let s:GREY5   = '242'	" Done
-    let s:GREY6   = '250'	" Done
-	let s:WHITE   = '231'	" Done
+	let s:PINK1   = '131'	" Warnings, errors, FG/BG
+    let s:GREY0   = '233'	" Gutter BG
+	let s:GREY1   = '234'	" Main BG
+
+	let s:GREY2   = '236'	" Current Line BG
+    let s:GREY3   = '235'	" 80-char column BG
+    let s:GREY4   = '240'	" Nontext, special keys
+    let s:GREY5   = '242'	" Gutter text
+    let s:GREY6   = '250'	" Code white, cmd view color
+	let s:WHITE   = '231'	" Tab title
   else
     "Set color palette with color names
     let s:RED    = 'red'
@@ -142,8 +143,8 @@ exe 'hi PmenuSbar        '.s:M.'bg='.s:GREY4  .' '.s:M.'fg='.s:BG .' '.s:M.'='.s
 exe 'hi PmenuSel         '.s:M.'bg='.s:TEAL0   .' '.s:M.'fg='.s:GREY1  .' '.s:M.'='.s:N
 exe 'hi PmenuThumb       '.s:M.'bg='.s:TEAL0   .' '.s:M.'fg='.s:TEAL0   .' '.s:M.'='.s:N
 
-exe 'hi ErrorMsg         '.s:M.'bg='.s:PINK1  .' '.s:M.'fg='.s:GREY1  .' '.s:M.'='.s:N
-exe 'hi ModeMsg          '.s:M.'bg='.s:GREEN0  .' '.s:M.'fg='.s:GREY1  .' '.s:M.'='.s:N
+exe 'hi ErrorMsg         '.s:M.'bg='.s:PINK1  .' '.s:M.'fg='.s:GREY1  .' '.s:M.'='.s:R
+exe 'hi ModeMsg          '.s:M.'bg='.s:BG  .' '.s:M.'fg='.s:GREEN0  .' '.s:M.'='.s:N
 exe 'hi MoreMsg          '.s:M.'bg='.s:BG .' '.s:M.'fg='.s:TEAL0   .' '.s:M.'='.s:N
 exe 'hi Question         '.s:M.'bg='.s:BG .' '.s:M.'fg='.s:GREEN0  .' '.s:M.'='.s:N
 exe 'hi WarningMsg       '.s:M.'bg='.s:BG .' '.s:M.'fg='.s:PINK1  .' '.s:M.'='.s:N
