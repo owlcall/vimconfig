@@ -17,10 +17,10 @@ set -g status-bg default
 
 # Left side of status bar
 set -g status-left-bg colour233
-set -g status-left-fg colour243
+set -g status-left-fg colour39
 set -g status-left-length 40
 #set -g status-left "#[fg=colour232,bg=colour39,bold] #S #[fg=colour39,bg=colour240,nobold]#[fg=colour233,bg=colour240] #(whoami) #[fg=colour240,bg=colour235]#[fg=colour240,bg=colour235] #I:#P #[fg=colour235,bg=colour233,nobold]"
-set -g status-left "#[fg=colour39,bg=colour236] #(whoami) #[fg=colour39,bg=colour240,nobold]#[fg=colour39,bg=colour235] @#H #[fg=colour235,bg=colour233,nobold]"
+set -g status-left "#[bg=colour236] #(whoami) #[bg=colour240,nobold]#[bg=colour235] @#H #[fg=colour235,bg=colour233,nobold]"
 
 # Right side of status bar
 set -g status-right-bg colour233

@@ -6,15 +6,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 	Plugin 'gmarik/Vundle.vim'
 	Plugin 'airblade/vim-gitgutter'
-	Plugin 'ludovicchabant/vim-gutentags'
-	"Plugin 'rhysd/vim-clang-format'
+	"Plugin 'ludovicchabant/vim-gutentags'
 	Plugin 'christoomey/vim-tmux-navigator'
 	Plugin 'kien/ctrlp.vim'
 	Plugin 'scrooloose/nerdcommenter'
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
-
-	Plugin 'Valloric/YouCompleteMe'
 
 	Plugin 'google/vim-searchindex'
 
@@ -25,6 +22,8 @@ call vundle#end()            " required
 "=========================== Theme settings
 set background=dark
 colorscheme apprentice
+
+filetype plugin indent on
 
 "=========================== Vim behavior settings
 if has ('autocmd')
@@ -57,7 +56,7 @@ set splitbelow		" Use bottom split for a new horizontal split buffer
 set splitright		" Use right split for a new vertical split buffer
 
 "=========================== General settings
-set exrc			" Load working directory .vimrc file
+"set exrc			" Load working directory .vimrc file
 set secure
 set antialias		" Enable antialiasing on Mac OS X
 set encoding=utf-8	" Default utf-8 encoding
@@ -95,6 +94,15 @@ nmap \ <Leader>
 " Wildcard search ignore settings
 set wildignore+=.git
 set wildignore+=*~,*.swp,*.swo,*.tmp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.gz,*.tar     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.?(deps|build|git|hg|svn)$'
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/]\.(build|git|hg|svn)$',
+  "\ 'file': '\v\.(exe|so|dll)$',
+  "\ 'link': 'some_bad_symbolic_links',
+  "\ }
 
 "=========================== Editor formatting
 set tabstop=4		" width of the TAB character
@@ -237,6 +245,3 @@ nnoremap <silent> <Leader>o :e.<CR>										" Open editor window
 "=== Editor bindings
 "nnoremap <space> za|					" Enable folding with the spacebar
 nnoremap <silent> <Leader>w :w !diff % -<CR>|	" Show differences before writing to file
-
-
-filetype plugin indent on

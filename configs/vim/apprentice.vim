@@ -79,6 +79,7 @@ else                     "Console Vim
 	let s:LPURPLE = '103'	" Vimdiff
 	let s:PINK0   = '163'	" Done
 	let s:PINK1   = '131'	" Warnings, errors, FG/BG
+	let s:RED0    = '161'   " YCM Errors
     let s:GREY0   = '233'	" Gutter BG
 	let s:GREY1   = '234'	" Main BG
 
@@ -185,6 +186,8 @@ exe 'hi Search           '.s:M.'bg='.s:YELLOW0  .' '.s:M.'fg='.s:GREY1  .' '.s:M
 exe 'hi Directory        '.s:M.'bg='.s:BG .' '.s:M.'fg='.s:TEAL1   .' '.s:M.'='.s:N
 
 exe 'hi ColorColumn      '.s:M.'bg='.s:GREY3  .' '.s:M.'fg='.s:BG .' '.s:M.'='.s:N
+
+exe 'hi YcmErrorSection  '.s:M.'bg='.s:RED0  .' '.s:M.'fg='.s:GREY3 .' '.s:M.'='.s:N
 
 "if has("gui_running")
 "hi SpellBad         ctermbg=NONE ctermfg=131  guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#af5f5f
